@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>index</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="D:\yang\hygebra.github.io\style.css" />
+</head>
+<body>
+<div class="topbar">
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="index.html">Homepage</a>
+    <a href="blog/index.html">Blog</a>
+    <!-- <a href="index.html#papers">论文</a>
+    <a href="index.html#about">关于我</a> -->
+  </div>
+</div>
+
+
+<div class="sidebar">
+  <h2>Navigation</h2>
+  <a href="index.html">Homepage</a>
+  <a href="blog/index.html">Blog</a>
+  <a href="test.html">Test</a>
+  <!-- <a href="#about">关于我</a> -->
+  <script>
+  // 找到 sidebar 中所有链接
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
+
+  sidebarLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (linkPage === currentPage) {
+          link.classList.add('active'); // 加上高亮类
+      }
+  });
+</script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+
+
+<div class="sidebar">
+  <h2>Navigation</h2>
+  <a href="index.html">Homepage</a>
+  <a href="blog/index.html">Blog</a>
+  <a href="test.html">Test</a>
+  <!-- <a href="#about">关于我</a> -->
+  <script>
+  // 找到 sidebar 中所有链接
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
+
+  sidebarLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (linkPage === currentPage) {
+          link.classList.add('active'); // 加上高亮类
+      }
+  });
+</script>
+</div>
