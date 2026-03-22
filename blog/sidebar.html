@@ -5,6 +5,39 @@
   <a href="index.html">博客封面</a>
   <a href="blog1.html">博客1</a>
   <!-- <a href="#about">关于我</a> -->
+
+  <ul>
+    <!-- 一级链接 -->
+    <li><a href="index.html">首页</a></li>
+
+    <!-- 一级链接 + 二级列表 -->
+    <li>
+      <a href="#">研究方向</a>
+      <ul>
+        <li><a href="ml.html">机器学习</a></li>
+        <li>
+          <a href="theory.html">理论计算机科学</a>
+          <!-- 三级列表 -->
+          <ul>
+            <li><a href="sat.html">SAT 求解</a></li>
+            <li><a href="graph.html">图论</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+
+    <!-- 另一个一级链接 -->
+    <li>
+      <a href="#">技术博客</a>
+      <ul>
+        <li><a href="python.html">Python</a></li>
+        <li><a href="js.html">JavaScript</a></li>
+      </ul>
+    </li>
+
+    <li><a href="about.html">关于我</a></li>
+  </ul>
+
   <script>
   // 找到 sidebar 中所有链接
   const sidebarLinks = document.querySelectorAll('.sidebar a');

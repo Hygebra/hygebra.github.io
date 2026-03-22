@@ -103,3 +103,16 @@ button {
     color: #007bff; /* 高亮颜色 */
     background-color: #f0f0f0;
 }
+
+.sidebar ul {
+  list-style-type: none; /* 去掉默认圆点 */
+  padding-left: 0;
+}
+
+.sidebar ul ul {
+  padding-left: 20px; /* 二级缩进 */
+}
+
+.sidebar ul ul ul {
+  padding-left: 40px; /* 三级缩进 */
+}
