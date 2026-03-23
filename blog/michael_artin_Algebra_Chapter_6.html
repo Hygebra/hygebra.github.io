@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>michael_artin_Algebra_Chapter_6</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="D:\yang\hygebra.github.io\style.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<div class="topbar">
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="../index.html">Homepage</a>
+    <a href="index.html">Blog</a>
+    <!-- <a href="index.html#papers">论文</a>
+    <a href="index.html#about">关于我</a> -->
+  </div>
+</div>
+<div class="sidebar">
+  <!-- <h2>博客导航</h2> -->
+  <!-- <a href="#about">关于我</a> -->
+
+  <ul>
+    <!-- 一级链接 -->
+    <li><a href="index.html">博客封面</a></li>
+
+    <!-- 一级链接 + 二级列表 -->
+    <!-- <li>
+      <a href="#">研究方向</a>
+      <ul>
+        <li><a href="ml.html">机器学习</a></li>
+        <li>
+          <a href="theory.html">理论计算机科学</a> -->
+          <!-- 三级列表 -->
+          <!-- <ul>
+            <li><a href="sat.html">SAT 求解</a></li>
+            <li><a href="graph.html">图论</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li> -->
+
+    <!-- 另一个一级链接 -->
+    <li>
+      <a href="#">Abstract Algebra</a>
+      <ul>
+        <li><a href="michael_artin_Algebra_Chapter_2.html">Note of Michael Artin "Algebra" Chapter 2 "Groups"</a></li>
+        <li><a href="michael_artin_Algebra_Chapter_5.html">Note of Michael Artin "Algebra" Chapter 5 "Applications of Linear Operators" (to complete)</a></li>
+        <li><a href="michael_artin_Algebra_Chapter_6.html">Note of Michael Artin "Algebra" Chapter 6 "Symmetry" (to complete)</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+  // 找到 sidebar 中所有链接
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
+
+  sidebarLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (linkPage === currentPage) {
+          link.classList.add('active'); // 加上高亮类
+      }
+  });
+</script>
+</div>
+<div class="main">
+<h1
+id="note-of-michael-artin-algebra-chapter-6-symmetry-to-complete">Note
+of Michael Artin “Algebra” Chapter 6 “Symmetry” (to complete)</h1>
+<h1 id="symmetry-of-plane-figures">6.1 SYMMETRY OF PLANE FIGURES</h1>
+<p>Bilateral, rotational, translational, glide symmetry, and their
+combinations.</p>
+<h1 id="isometries">6.2 ISOMETRIES</h1>
+<h2 id="def.-distance-isometry">6.2.1 Def. (Distance, Isometry)</h2>
+<p>The distance between points of <span
+class="math inline">\(\mathbb{R}^n\)</span> is the length <span
+class="math inline">\(|u-v|\)</span> of the vector <span
+class="math inline">\(u-v\)</span>. An <strong>isometry</strong> of
+<span class="math inline">\(n\)</span>-dimensional space <span
+class="math inline">\(\mathbb{R}^n\)</span> is a distance-preserving map
+<span class="math inline">\(f\)</span> from <span
+class="math inline">\(\mathbb{R}^n\)</span> to itself, a map such that,
+<span class="math inline">\(\forall u \in \mathbb{R}^n\)</span>, <span
+class="math display">\[
+|f(u) - f(v)|=|u-v|.
+\]</span> An isometry will map a figure to a congruent figure.</p>
+<h2 id="examples.">6.2.2. Examples.</h2>
+<ul>
+<li><strong>(a)</strong> Orthogonal liear operators are isometries.
+<ul>
+<li>Orthogonal operator preserve dot product <span
+class="math inline">\(\rightarrow\)</span> distance.</li>
+</ul></li>
+<li><strong>(b)</strong> Translation <span class="math inline">\(t_a(x)
+= x + a\)</span> by vector <span class="math inline">\(a\)</span> is
+isometry.</li>
+<li><strong>(c)</strong> The composition of isometries is an
+isometry.</li>
+</ul>
+<h2 id="theo.">6.2.3 Theo.</h2>
+<p>The following conditions on a map <span
+class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span> are
+equivalent: - <strong>(a)</strong> <span
+class="math inline">\(\varphi\)</span> is an isometry that fixes the
+origin: <span class="math inline">\(\varphi(0)=0\)</span>, -
+<strong>(b)</strong> <span class="math inline">\(\varphi\)</span>
+preserves dot products: <span class="math inline">\((\varphi(v)\cdot
+\varphi(w)) = (v \cdot w), \forall v,w\)</span>, - <strong>(c)</strong>
+<span class="math inline">\(\varphi\)</span> is an orthogonal linear
+operator.</p>
+<h2 id="lemma.">6.2.4 Lemma.</h2>
+<p><span class="math display">\[
+x,y \in \mathbb{R}^n, (x \cdot x) = (y\cdot y) = (x\cdot y) \rightarrow
+x=y
+\]</span></p>
+<h2 id="cor.">6.2.7 Cor.</h2>
+<p>Every isometry <span class="math inline">\(f\)</span> of <span
+class="math inline">\(\mathbb{R}^n\)</span> is the composition of an
+orthogonal linear operator and a translation. If <span
+class="math inline">\(f\)</span> is an isometry and if <span
+class="math inline">\(f(0)=a\)</span>, then <span
+class="math inline">\(f = t_a\varphi\)</span>, where <span
+class="math inline">\(t_a\)</span> is a translation and <span
+class="math inline">\(\phi\)</span> is an orthogoal linear operator, and
+this expression for <span class="math inline">\(f\)</span> is
+unique.</p>
+<h2 id="cor.-1">6.2.9 Cor.</h2>
+<p>The set of all isometries of <span
+class="math inline">\(\mathbb{R}^n\)</span> forms a group that we denote
+by <span class="math inline">\(M_n\)</span>, with composition of
+functions as its law of composition.</p>
+<p><strong>The Homomorphism</strong> <span class="math inline">\(\pi:
+M_n \to O_n\)</span>, defined by dropping the translation part of an
+isometry <span class="math inline">\(f\)</span>.</p>
+<h2 id="prop.">6.2.10 Prop.</h2>
+<p>The map <span class="math inline">\(pi\)</span> is a surjective
+homomorphism. Its kernel is the set <span
+class="math inline">\(T=\{t_v\}\)</span> of translations, which is a
+normal subgroup of <span class="math inline">\(M_n\)</span>.</p>
+<h2 id="change-of-coordinates">6.2.11 Change of Coordinates</h2>
+<p>Our change in coordinates will be given by some isometry, let’s
+denote it by <span class="math inline">\(\eta\)</span>. Let the new
+cooirdinate vectors of <span class="math inline">\(p\)</span> and <span
+class="math inline">\(q\)</span> be <span
+class="math inline">\(x&#39;\)</span> and <span
+class="math inline">\(y&#39;\)</span>. The new formula <span
+class="math inline">\(m&#39;\)</span> for <span
+class="math inline">\(f\)</span> is the one such that <span
+class="math inline">\(m&#39;(x&#39;)=y&#39;\)</span>. We also have the
+formula <span class="math inline">\(\eta(x&#39;) = x\)</span> analogous
+to the change of basis formula <span
+class="math inline">\(PX&#39;=X\)</span>. <span class="math display">\[
+m&#39; = \eta^{-1} m\eta
+\]</span></p>
+<h2 id="cor.-2">6.2.12 Cor.</h2>
+<p>The homomorphism <span class="math inline">\(\pi\)</span> does not
+change when the origin is shifted by a translation.</p>
+<h2 id="orientation">6.2.13 Orientation</h2>
+<p>The determinant of an orthogonal operator <span
+class="math inline">\(\varphi\)</span> on <span
+class="math inline">\(\mathbb{R}^n\)</span> is <span
+class="math inline">\(\pm 1\)</span>. There are 2 orientations,
+<strong>orientation-preserving</strong> and
+<strong>orientation-reversing</strong>. The map <span
+class="math display">\[
+\sigma: M_n \to \{ \pm 1\}
+\]</span> is a group homomorphism.</p>
+<h1 id="isometries-of-the-plane">6.3 ISOMETRIES OF THE PLANE</h1>
+</div>
+</body>
+</html>

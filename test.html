@@ -39,36 +39,23 @@
     <a href="index.html#about">关于我</a> -->
   </div>
 </div>
-
-
 <div class="sidebar">
-  <h2>Navigation</h2>
-  <a href="index.html">Homepage</a>
-  <a href="blog/index.html">Blog</a>
-  <a href="test.html">Test</a>
-  <!-- <a href="#about">关于我</a> -->
-  <script>
-  // 找到 sidebar 中所有链接
-  const sidebarLinks = document.querySelectorAll('.sidebar a');
-  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
-
-  sidebarLinks.forEach(link => {
-      const linkPage = link.getAttribute('href');
-      if (linkPage === currentPage) {
-          link.classList.add('active'); // 加上高亮类
-      }
-  });
-</script>
+    <a href="https://github.com/Hygebra" target="_blank">
+        <img height="120" src="./pic/github_avater.jpg" width="100">
+    </a>
+    <a href="https://github.com/Hygebra" target="_blank">
+    <h2>Github</h2>
+    </a>
 </div>
 <div class="container">
 <!-- 左侧栏导航 -->
-<div class="sidebar">
-<h2>
-导航
-</h2>
-<p><a href="#home">主页</a> <a href="#blog">博客</a>
-<a href="#papers">论文</a> <a href="#about">关于我</a></p>
-</div>
+<!-- <div class="sidebar">
+  <h2>导航</h2>
+  <a href="#home">主页</a>
+  <a href="#blog">博客</a>
+  <a href="#papers">论文</a>
+  <a href="#about">关于我</a>
+</div> -->
 <!-- 主体内容 -->
 <div class="main">
 <p><a id="home"></a></p>

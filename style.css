@@ -44,9 +44,12 @@ body {
 
 /* 左侧固定侧栏 */
 .sidebar {
+    display: flex;
+    flex-direction: column; /* 纵向排列，如果有多个元素也可 */
+    align-items: center;
     width: 220px;
     background-color: #f0f0f0;
-    padding: 20px;
+    padding: 10px;
     box-sizing: border-box;
     position: fixed;
     top: 60px; /* 顶栏高度 */
@@ -72,9 +75,10 @@ body {
 
 /* 主体内容区 */
 .main {
+    margin-top: 60px;
     margin-left: 240px; /* 留出侧栏宽度 */
     padding: 20px;
-    max-width: 900px;
+    max-width: 1100px;
 }
 
 /* 图片自适应 */

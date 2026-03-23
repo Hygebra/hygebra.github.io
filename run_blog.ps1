@@ -25,7 +25,8 @@ $blogTopbarFile = Join-Path (Get-Location) "blog\topbar.html"
 $rootSidebarFile = Join-Path (Get-Location) "sidebar.html"
 $blogSidebarFile = Join-Path (Get-Location) "blog\sidebar.html"
 $rootCssFile = Join-Path (Get-Location) "style.css"
-$blogCssFile = Join-Path (Get-Location) "blog\style.css"
+$blogCssFile = Join-Path (Get-Location) "style.css"
+$templateFile = Join-Path (Get-Location) "template.html"
 
 # ---------- 遍历所有 Markdown ----------
 $allMdFiles = Get-ChildItem -Path . -Recurse -Filter *.md
@@ -67,8 +68,9 @@ for ($i = 0; $i -lt $total; $i++) {
 
     Write-Host "`nProcessing [$($i+1)/$total]: $f"
 
-    $cmd = "`"$pandocExe`" `"$f`" -o `"$outFile`" --include-before-body `"$topbarFile`" --include-after-body `"$sidebarFile`""
+    $cmd = "`"$pandocExe`" `"$f`" -o `"$outFile`" --template=`"$templateFile`" --include-before-body `"$topbarFile`" --include-after-body `"$sidebarFile`""
     Write-Host "Executing: $cmd"
 
+    # & "$pandocExe" $f -o $outFile --mathjax --css "$cssFile" --template="$templateFile" --include-before-body "$topbarFile" --include-before-body "$sidebarFile"
     & "$pandocExe" $f -o $outFile --mathjax --css "$cssFile" --include-before-body "$topbarFile" --include-before-body "$sidebarFile"
 }

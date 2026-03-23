@@ -1,13 +1,13 @@
 <div class="container">
 
 <!-- 左侧栏导航 -->
-<div class="sidebar">
+<!-- <div class="sidebar">
   <h2>导航</h2>
   <a href="#home">主页</a>
   <a href="#blog">博客</a>
   <a href="#papers">论文</a>
   <a href="#about">关于我</a>
-</div>
+</div> -->
 
 <!-- 主体内容 -->
 <div class="main">

@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>michael_artin_Algebra_Chapter_2</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="D:\yang\hygebra.github.io\style.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<div class="topbar">
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="../index.html">Homepage</a>
+    <a href="index.html">Blog</a>
+    <!-- <a href="index.html#papers">论文</a>
+    <a href="index.html#about">关于我</a> -->
+  </div>
+</div>
+<div class="sidebar">
+  <!-- <h2>博客导航</h2> -->
+  <!-- <a href="#about">关于我</a> -->
+
+  <ul>
+    <!-- 一级链接 -->
+    <li><a href="index.html">博客封面</a></li>
+
+    <!-- 一级链接 + 二级列表 -->
+    <!-- <li>
+      <a href="#">研究方向</a>
+      <ul>
+        <li><a href="ml.html">机器学习</a></li>
+        <li>
+          <a href="theory.html">理论计算机科学</a> -->
+          <!-- 三级列表 -->
+          <!-- <ul>
+            <li><a href="sat.html">SAT 求解</a></li>
+            <li><a href="graph.html">图论</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li> -->
+
+    <!-- 另一个一级链接 -->
+    <li>
+      <a href="#">Abstract Algebra</a>
+      <ul>
+        <li><a href="michael_artin_Algebra_Chapter_2.html">Note of Michael Artin "Algebra" Chapter 2 "Groups"</a></li>
+        <li><a href="michael_artin_Algebra_Chapter_5.html">Note of Michael Artin "Algebra" Chapter 5 "Applications of Linear Operators" (to complete)</a></li>
+        <li><a href="michael_artin_Algebra_Chapter_6.html">Note of Michael Artin "Algebra" Chapter 6 "Symmetry" (to complete)</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+  // 找到 sidebar 中所有链接
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
+
+  sidebarLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (linkPage === currentPage) {
+          link.classList.add('active'); // 加上高亮类
+      }
+  });
+</script>
+</div>
+<div class="main">
+<h1 id="note-of-michael-artin-algebra-chapter-2-groups">Note of Michael
+Artin “Algebra” Chapter 2 “Groups”</h1>
+<h1 id="laws-of-composition">2.1 LAWS OF COMPOSITION</h1>
+<h2 id="def.-laws-of-composition">Def. (Laws of Composition)</h2>
+<p>Any rule combining pairs of element of <span
+class="math inline">\(S\)</span> to get another element of <span
+class="math inline">\(S\)</span>: <span class="math inline">\(S\times S
+\to S\)</span>.</p>
+<h2 id="def.-associative-law-skipped">2.1.1 Def. (Associative Law)
+(Skipped)</h2>
+<h2 id="def.-commutative-law-skipped">2.1.2 Def. (Commutative Law)
+(Skipped)</h2>
+<h2 id="prop.-associative-law-rightarrow-product-def.">2.1.4 Prop.
+(Associative Law <span class="math inline">\(\Rightarrow\)</span>
+Product Def.)</h2>
+<p><span class="math inline">\([a_1] = a_1,[a_1a_2] = a_1\times
+a_2,\forall \text{ integer } i \in [1,n],[a_1\cdots a_n] = [a_1\cdots
+a_i][a_{i+1}\cdots a_n]\)</span></p>
+<h2 id="def.-identity">2.1.5 Def. (Identity)</h2>
+<p><span class="math inline">\(ea=a\)</span> and <span
+class="math inline">\(ae=a,\forall a \in S\)</span></p>
+<ul>
+<li>Left identity and right identity: Something deters whether a
+semi-group can be a group.(to do)</li>
+</ul>
+<h1 id="groups-and-subgroups">2.2 GROUPS AND SUBGROUPS</h1>
+<h2 id="def.-group">Def. (Group)</h2>
+<ul>
+<li>Associativity, identity, inverse(both left and right)</li>
+<li>Abelian group (Group + Commutativity)</li>
+</ul>
+<h2 id="def.-order-of-group">2.2.1 Def. (Order of Group)</h2>
+<p><span class="math inline">\(|G|\)</span> = number of elements of
+<span class="math inline">\(G\)</span>.</p>
+<h2 id="def.-familiar-infinite-abelian-groups">2.2.2 Def. (Familiar
+Infinite Abelian Groups)</h2>
+<p><span class="math inline">\(\mathbb{Z}^+, \mathbb{R}^+,
+\mathbb{R}^{\times}, \mathbb{C}^+, \mathbb{C}^{\times}\)</span></p>
+<h2 id="prop.-cancellation-law">2.2.3 Prop. (Cancellation Law)</h2>
+<p>If <span class="math inline">\(ab=ac\)</span> or if <span
+class="math inline">\(ba=ca\)</span>, the <span
+class="math inline">\(b=c\)</span>. If <span
+class="math inline">\(ab=a\)</span> or if <span
+class="math inline">\(ba=a\)</span>, then <span
+class="math inline">\(b=1\)</span>.</p>
+<h2 id="def.-general-linear-group">2.2.4 Def. (General Linear
+Group)</h2>
+<p><span class="math inline">\(GL_n = \left\{ A_{n\times n} | det(A)
+\neq 0 \right\}\)</span> Working on <span
+class="math inline">\(\mathbb{R}\)</span> or <span
+class="math inline">\(\mathbb{C}\)</span>, we have <span
+class="math inline">\(GL_n(\mathbb{R}), GL_n(\mathbb{C})\)</span>.</p>
+<h2 id="def.-symmetric-group-s_n">2.2.5 Def. (Symmetric Group <span
+class="math inline">\(S_n\)</span>)</h2>
+<p><span class="math inline">\(S_n\)</span> is the group of permutations
+of the set of indices <span class="math inline">\({1,2,\cdots,
+n}\)</span>.</p>
+<h2 id="def.-subgroup">2.2.9 Def. (Subgroup)</h2>
+<p><span class="math inline">\(G\)</span> is a group, <span
+class="math inline">\(H \subset G\)</span> is a subgroup if it has the
+following properties:</p>
+<ul>
+<li>Closure: If <span class="math inline">\(a\)</span> and <span
+class="math inline">\(b\)</span> are in <span
+class="math inline">\(H\)</span>, then <span
+class="math inline">\(ab\)</span> is in <span
+class="math inline">\(H\)</span>.</li>
+<li>Identity: <span class="math inline">\(1\)</span> is in <span
+class="math inline">\(H\)</span>.</li>
+<li>Inverses: If <span class="math inline">\(a\)</span> is in <span
+class="math inline">\(H\)</span>, then <span
+class="math inline">\(a^{-1}\)</span> is in H.</li>
+</ul>
+<h2
+id="example.-circle-group-special-linear-group-trivial-subgroup-and-proper-subgroup">2.2.10
+Example. (Circle Group, Special Linear Group, Trivial Subgroup and
+Proper Subgroup)</h2>
+<h3 id="circle-group">Circle group</h3>
+<p>Circle group is <span class="math inline">\(\left\{ x| x\in
+\mathbb{C}, |x| = 1\right\}\)</span>, the set of points on the unit
+circle in the complex plane, is a subgroup of <span
+class="math inline">\(\mathbb{C}^{\times}\)</span>.</p>
+<h3 id="special-linear-group-sl_n">Special Linear Group <span
+class="math inline">\(SL_n\)</span></h3>
+<p><span class="math inline">\(SL_n(\mathbb{R})\)</span> is the set of
+real <span class="math inline">\(n\times n\)</span> matrices <span
+class="math inline">\(A\)</span> with determinant equal to <span
+class="math inline">\(1\)</span>.</p>
+<h3 id="trivial-subgroup-and-proper-subgroup">Trivial Subgroup and
+Proper Subgroup</h3>
+<ul>
+<li>Trivial Subgroup: <span class="math inline">\(\left\{ 1 \right\}, G
+\leq G\)</span></li>
+<li>Proper Subgroup: Subgroups not trivial.</li>
+</ul>
+<h1 id="subgroups-of-the-additive-group-of-integers">2.3 SUBGROUPS OF
+THE ADDITIVE GROUP OF INTEGERS</h1>
+<h2 id="def.-subgroup-by-additive-notation-skipped">2.3.1 Def. (Subgroup
+by additive notation) (Skipped)</h2>
+<h2 id="notation.-mathbbza">2.3.2 Notation. (<span
+class="math inline">\(\mathbb{Z}a\)</span>)</h2>
+<p><span class="math inline">\(\mathbb{Z}a\)</span> is a subset of <span
+class="math inline">\(\mathbb{Z}\)</span> that consists of all multiples
+of <span class="math inline">\(a\)</span> by <span
+class="math inline">\(\mathbb{Z}a\)</span>.</p>
+<h2 id="theorem.">2.3.3 Theorem.</h2>
+<p>Let <span class="math inline">\(S \leq \mathbb{Z}^+\)</span>, then
+<span class="math inline">\(S\)</span> is trivial or <span
+class="math inline">\(S = \mathbb{Z}a\)</span>, where <span
+class="math inline">\(a\)</span> is the smallest positive integer in
+<span class="math inline">\(S\)</span>.</p>
+<h2 id="prop.">2.3.4, 2.3.5 Prop.</h2>
+<p><span class="math display">\[
+S = \mathbb{Z}a + \mathbb{Z}b = \left\{n\in\mathbb{Z} | n=ra+sb \text{
+for some integers } r,s \right\} = \mathbb{Z}d, d = \gcd(a,b)
+\]</span></p>
+<h2 id="prop.-2.3.8">2.3.6 Prop. 2.3.8</h2>
+<p><span class="math display">\[
+\mathbb{Z}a\cap \mathbb{Z}b = \mathbb{Z}m \Rightarrow m = \text{lcm}
+(a,b)
+\]</span></p>
+<h1 id="cyclic-groups">2.4 CYCLIC GROUPS</h1>
+<h2 id="def.-cyclic-group">2.4.1 Def. (Cyclic Group)</h2>
+<p><span class="math inline">\(x\)</span> is an arbitrary element of
+<span class="math inline">\(G\)</span>, the cyclic group generated by
+<span class="math inline">\(x\)</span> is <span class="math inline">\(H
+= \left\{ \cdots, x^{-2}, x^{-1}, 1, x, x^2, \cdots\right\}.\)</span> We
+have <span class="math inline">\(H \leq G\)</span>, and <span
+class="math inline">\(H\)</span> is the smallest subgroup of <span
+class="math inline">\(G\)</span> that contains <span
+class="math inline">\(x\)</span>.</p>
+<h2 id="prop.-1">2.4.2 Prop.</h2>
+<p>Let &lt;<span class="math inline">\(x\)</span>&gt; be the cyclic
+subgroup of <span class="math inline">\(G\)</span> generated by <span
+class="math inline">\(x \in G\)</span>, and let <span
+class="math inline">\(S\)</span> denote the set of integers <span
+class="math inline">\(k\)</span> such that <span
+class="math inline">\(x^k = 1\)</span>.</p>
+<ul>
+<li><strong>(a)</strong> The set <span class="math inline">\(S\)</span>
+is a subgroup of the additive group <span
+class="math inline">\(\mathbb{Z}\)</span>.</li>
+<li><strong>(b)</strong> Two powers <span
+class="math inline">\(x^r=x^s\)</span>, with <span
+class="math inline">\(r \geq s\)</span>, are equal if and only if <span
+class="math inline">\(x^{r-s} = 1\)</span>, i. e., if and only if <span
+class="math inline">\(r-s\)</span> is in <span
+class="math inline">\(S\)</span>.</li>
+<li><strong>(c)</strong> Suppose that <span
+class="math inline">\(S\)</span> is proper subgroup. Then <span
+class="math inline">\(S = \mathbb{Z}n\)</span> for some positive integer
+<span class="math inline">\(n\)</span>. The powers <span
+class="math inline">\(1,x,x^2,\cdots,x^{n-1}\)</span> are the distinct
+elements of the subgroup &lt;<span class="math inline">\(x\)</span>&gt;,
+and the order of &lt;<span class="math inline">\(x\)</span>&gt; is <span
+class="math inline">\(n\)</span>.</li>
+</ul>
+<p>The group &lt;<span class="math inline">\(x\)</span>&gt; described by
+part <strong>(c)</strong> is called the <strong>cyclic group of order
+<span class="math inline">\(n\)</span></strong>. An element <span
+class="math inline">\(x\)</span> of a group has <strong>order <span
+class="math inline">\(n\)</span></strong> if <span
+class="math inline">\(n\)</span> is the smallest positive integer with
+the property <span class="math inline">\(x^n=1\)</span>, which is the
+same thing as saying that the cyclic subgroup &lt;<span
+class="math inline">\(x\)</span>&gt; generated by <span
+class="math inline">\(x\)</span> has order <span
+class="math inline">\(n\)</span>.</p>
+<h2 id="example.-klein-four-group-v">2.4.4 Example. (Klein four group
+<span class="math inline">\(V\)</span>)</h2>
+<p><span class="math display">\[
+V = \left[
+\begin{matrix}
+\pm 1 &amp;  \\
+&amp; \pm 1
+\end{matrix}
+\right]
+\]</span></p>
+<p><span class="math inline">\(V\)</span> is the simplest group that is
+not cyclic.</p>
+<h2 id="example.-quaternion-group-h">2.4.5 Example. (Quaternion group
+<span class="math inline">\(H\)</span>)</h2>
+<p><span class="math display">\[
+H = \left\{ \pm 1, \pm i, \pm j, \pm k\right\}
+\]</span></p>
+<p>where <span class="math display">\[
+\textbf{1} = \left[
+\begin{matrix}
+1 &amp; 0\\
+0 &amp; 1
+\end{matrix}
+\right],
+\textbf{i} = \left[
+\begin{matrix}
+i &amp; 0\\
+0 &amp; -i
+\end{matrix}
+\right],
+\textbf{j} = \left[
+\begin{matrix}
+0 &amp; 1\\
+-1 &amp; 0
+\end{matrix}
+\right],
+\textbf{k} = \left[
+\begin{matrix}
+0 &amp; i\\
+i &amp; 0
+\end{matrix}
+\right]
+\]</span> These matrices can be obtained from the <strong>Pauli
+matrices</strong> of physics by multiplying by <span
+class="math inline">\(i\)</span>.</p>
+<p>The two elements <span class="math inline">\(i,j\)</span> generate
+<span class="math inline">\(H\)</span>. <span
+class="math inline">\(i^2=j^2=k^2=-1, ij=-ji=k, jk=-kj=i,
+ki=-ik=j\)</span>.</p>
+<h1 id="homomorphisms">2.5 HOMOMORPHISMS</h1>
+<h2 id="def.-homomorphism">2.5.1, 2.5.3 Def. (Homomorphism)</h2>
+<p>A homomorphism <span class="math inline">\(\varphi : G \to
+G&#39;\)</span> is a map such that <span class="math inline">\(\forall
+a, b \in G\)</span>, <span class="math inline">\(\varphi (ab) = \varphi
+(a) \varphi (b)\)</span>.</p>
+<p>Group homomorphism maps product of elements, identity and inverses to
+themselves.</p>
+<h2 id="def.-image-and-kernel-skipped">2.5.4, 2.5.5 Def. (Image and
+Kernel) (Skipped)</h2>
+<h2 id="example.">2.5.6 Example.</h2>
+<ul>
+<li>Kernel of determinant homomorphism: <span
+class="math inline">\(\textbf{ker}( GL_n ( \mathbb{R}) \to
+\mathbb{R}^{\times}) = SL_n(\mathbb{R})\)</span></li>
+<li>Kernel of sign homomorphism: <span
+class="math inline">\(\textbf{ker}(S_n\to \left\{ \pm 1 \right\}) =
+A_n\)</span>
+<ul>
+<li>The alternating group <span class="math inline">\(A_n\)</span> is
+the group of even permutations.</li>
+</ul></li>
+</ul>
+<h2 id="def.-coset-skipped">2.5.7 Def. (Coset) (Skipped)</h2>
+<h2 id="prop.-2">2.5.8 Prop.</h2>
+<p><span class="math inline">\(\varphi:G \to G&#39;\)</span> is
+homomorphism of groups, <span class="math inline">\(a,b\in G, K =
+\textbf{ker} \varphi\)</span>. Following conditions are equivalent:</p>
+<ul>
+<li><span class="math inline">\(\varphi(a) = \varphi(b)\)</span></li>
+<li><span class="math inline">\(a^{-1}b \in K\)</span></li>
+<li><span class="math inline">\(b \in aK\)</span></li>
+<li><span class="math inline">\(aK = bK\)</span></li>
+</ul>
+<h2 id="def.-normal-subgroup">2.5.10 Def. (Normal Subgroup)</h2>
+<p>A subgroup <span class="math inline">\(N \leq G\)</span> is a normal
+subgroup if <span class="math inline">\(\forall a \in N, \forall g \in
+G, \text{ the conjugate } gag^{-1}\in N\)</span>.</p>
+<h2 id="prop.-3">2.5.11 Prop.</h2>
+<p>The kernel of a homomorphism is a normal subgroup.</p>
+<h2 id="def.-group-center">2.5.12 Def. (Group Center)</h2>
+<p>A group center is the set of element that commute with every element
+in <span class="math inline">\(G\)</span>. <span class="math display">\[
+Z = \left\{ z\in G | zx=xz, \forall x \in G\right \}, Z \trianglelefteq
+G
+\]</span></p>
+<h1 id="isomorphisms">2.6 ISOMORPHISMS</h1>
+<h2 id="def.-isomorphism">2.6.1 Def. (Isomorphism)</h2>
+<p>Bijective group homomorphism.</p>
+<p>Notation: <span class="math inline">\(G \approx G&#39;\)</span></p>
+<h2 id="lemma.">2.6.2 Lemma.</h2>
+<p><span class="math inline">\(\varphi: G \to G&#39;\)</span> is
+isomorphism <span class="math inline">\(\leftrightarrow \varphi^{-1}:
+G&#39; \to G\)</span> is isomorphism.</p>
+<h2 id="def.-automorphism">2.6.4 Def. (Automorphism)</h2>
+<p><span class="math inline">\(\varphi: G \to G\)</span> is isomorphism.
+The most important automorphism: Conjugation by <span
+class="math inline">\(g\)</span> : <span
+class="math inline">\(\varphi(x) = gxg^{-1}, g, x \in G\)</span></p>
+<h1 id="equivalence-relations-and-partitions">2.7 EQUIVALENCE RELATIONS
+AND PARTITIONS</h1>
+<h2 id="def.-equivalence">2.7.3 Def. (Equivalence)</h2>
+<p><span class="math inline">\(a \sim b, a,b \in S\)</span> requires
+transitive, symmetric, reflexive.</p>
+<h2 id="prop.-4">2.7.4 Prop.</h2>
+<p>A equivalence relation on a set <span
+class="math inline">\(S\)</span> determines a partition of <span
+class="math inline">\(S\)</span>, and conversely. Definition of
+equivalence class of <span class="math inline">\(a\)</span>: <span
+class="math display">\[
+C_a = \left\{ b\in S | a \sim b\right \}
+\]</span></p>
+<h2 id="lemma.-1">2.7.6 Lemma.</h2>
+<p>Given an equivalence relation on a set <span
+class="math inline">\(S\)</span>, the subsets of <span
+class="math inline">\(S\)</span> that are equivalence classes partition
+<span class="math inline">\(S\)</span>. If <span
+class="math inline">\(C_a\)</span> and <span
+class="math inline">\(C_b\)</span> have an element in common, then <span
+class="math inline">\(C_a = C_b\)</span>. Set <span
+class="math inline">\(\bar{S}\)</span> contains <span
+class="math inline">\(S\)</span>’s subset elements. If <span
+class="math inline">\(U\subseteq S\)</span>, we denote that <span
+class="math inline">\([U] \in \bar{S}\)</span>.</p>
+<h2 id="def.-inverse-image">2.7.11 Def. (Inverse image)</h2>
+<p>Any map of sets <span class="math inline">\(f:S\to T\)</span> gives
+us an equivalence relation on <span class="math inline">\(S\)</span>:
+<span class="math inline">\(a\sim b\)</span> if <span
+class="math inline">\(f(a)=f(b)\)</span>.</p>
+<p>Definition of inverse image of an element <span
+class="math inline">\(t\)</span> of <span
+class="math inline">\(T\)</span>: <span class="math display">\[
+f^{-1} (t) = \left\{ s \in S | f(s)=t \right\}
+\]</span> <span class="math inline">\(f\)</span> is bijective if and
+only if <span class="math inline">\(f\)</span> is a map. The inverse
+images are also called the <strong>fibres</strong> of the map <span
+class="math inline">\(f\)</span>, and the fibres that are not empty are
+the equivalence classes for the relation defined above.</p>
+<h2 id="prop.-5">2.7.15 Prop.</h2>
+<p>Let <span class="math inline">\(K\)</span> be the kernel of a
+homomorphism <span class="math inline">\(\varphi:G \to G&#39;\)</span>.
+The fibre of <span class="math inline">\(\varphi\)</span> that contains
+an element <span class="math inline">\(a\)</span> of <span
+class="math inline">\(G\)</span> is the coset <span
+class="math inline">\(aK\)</span> of <span
+class="math inline">\(K\)</span>. These cosets partition the group <span
+class="math inline">\(G\)</span>, and they correspond to elements of the
+image of <span class="math inline">\(\varphi\)</span>.</p>
+<h1 id="cosets">2.8 COSETS</h1>
+<h2 id="def.-coset">2.8.1 Def. (Coset)</h2>
+<p><span class="math display">\[
+H \leq G, a \in G, aH = \left\{ ah| h \in H \right \}
+\]</span></p>
+<p>The cosets of <span class="math inline">\(H \leq G\)</span> are
+equivalent classes for the congruence relation <span
+class="math inline">\(a \equiv b\)</span> if <span
+class="math inline">\(b=ah, h\in H\)</span>.</p>
+<h2 id="corollary.">2.8.3 Corollary.</h2>
+<p>The left cosets of a subgroup <span class="math inline">\(H \leq
+G\)</span> partition the group.</p>
+<p>The following are equivalent:</p>
+<ul>
+<li><span class="math inline">\(b=ah\)</span> for some <span
+class="math inline">\(h\in H\)</span>, or, <span
+class="math inline">\(a^{-1}b \in H\)</span>.</li>
+<li><span class="math inline">\(b \in aH\)</span></li>
+<li><span class="math inline">\(aH=bH\)</span></li>
+</ul>
+<h2 id="def.-index-of-left-cosets">2.8.6 Def. (Index of Left
+Cosets)</h2>
+<p>The number of left cosets of a subgroup is called the index of <span
+class="math inline">\(H\)</span> in <span
+class="math inline">\(G\)</span>, denoted by <span
+class="math inline">\([G:H]\)</span>.</p>
+<h2 id="lemma.-2">2.8.7 Lemma.</h2>
+<p>All left cosets <span class="math inline">\(aH\)</span> of a subgroup
+<span class="math inline">\(H\)</span> of a group <span
+class="math inline">\(G\)</span> have the same order.</p>
+<h2 id="corollary.-counting-formula">2.8.8 Corollary. (Counting
+Formula)</h2>
+<p><span class="math display">\[
+|G| = |H| [G:H]
+\]</span></p>
+<h2 id="theorem.-lagranges-theorem">2.8.9 Theorem. (Lagrange’s
+Theorem)</h2>
+<p>Let H be a subgroup of a finite group G. The order of H divides the
+order of G.</p>
+<h2 id="corollary.-1">2.8.10 Corollary.</h2>
+<p>The order of an element of a finite group divides the order of the
+group. &lt;<span class="math inline">\(a\)</span>&gt; <span
+class="math inline">\(\leq G, a\in G\)</span> (Prop. 2.4.2)</p>
+<h2 id="corollary.-2">2.8.11 Corollary.</h2>
+<p>Suppose that a group <span class="math inline">\(G\)</span> has prime
+order <span class="math inline">\(p\)</span>. Let <span
+class="math inline">\(a\)</span> be any element of <span
+class="math inline">\(G\)</span> other than the identity. Then <span
+class="math inline">\(G\)</span> is the cyclic group &lt;<span
+class="math inline">\(a\)</span>&gt; generated by <span
+class="math inline">\(a\)</span>.</p>
+<h2 id="corollary.-3">2.8.12 Corollary.</h2>
+<p>Referring to 2.7.15, we can conclude a bijective correspondence with
+the elements of the image. <span class="math display">\[
+[G: \ker \varphi] = |\text{im} \varphi|
+\]</span></p>
+<h2 id="corollary.-4">2.8.13 Corollary.</h2>
+<p>Let <span class="math inline">\(\varphi: G \to G&#39;\)</span> be a
+homomorphism of finite groups. Then</p>
+<ul>
+<li><span class="math inline">\(|G| = |\ker\varphi | \cdot |\text{im}
+\varphi|\)</span></li>
+<li><span class="math inline">\(|\ker\varphi |\)</span> divides <span
+class="math inline">\(|G|\)</span>, and</li>
+<li><span class="math inline">\(|\text{im}\varphi|\)</span> divides both
+<span class="math inline">\(|G|\)</span> and <span
+class="math inline">\(|G&#39;|\)</span>.</li>
+</ul>
+<h2 id="prop.-multiplicative-property-of-the-index">2.8.14 Prop.
+(Multiplicative Property of the Index)</h2>
+<p>Let <span class="math inline">\(G\supset H \supset K\)</span> be
+subgroups of a group <span class="math inline">\(G\)</span>. Then <span
+class="math inline">\([G:K]=[G:H][H:K]\)</span>.</p>
+<h2 id="def.-right-cosets">2.8.15 Def. (Right Cosets)</h2>
+<p>The partitions of right cosets of a subgroup of a group are not the
+same as those of the left cosets. However, if a subgroup is normal, the
+right coset is equal to the left coset.</p>
+<h2 id="prop.-6">2.8.17 Prop.</h2>
+<p>Let <span class="math inline">\(H\)</span> be a subgroup of a group
+<span class="math inline">\(G\)</span>. The following conditions are
+equivalent:</p>
+<ul>
+<li><strong>(i)</strong> <span class="math inline">\(H\)</span> is a
+normal subgroup: <span class="math inline">\(\forall h \in H\)</span>
+and all <span class="math inline">\(g\in G\)</span>, <span
+class="math inline">\(ghg^{-1}\)</span> is in <span
+class="math inline">\(H\)</span>.</li>
+<li><strong>(ii)</strong> <span class="math inline">\(\forall g\in G,
+gHg^{-1} = H\)</span>.</li>
+<li><strong>(iii)</strong> <span class="math inline">\(\forall g \in G,
+gH = Hg\)</span>.</li>
+<li><strong>(iv)</strong> Every left coset <span
+class="math inline">\(H\leq G\)</span> is a right coset. The
+circumstance of the left coset be equal to the right coset: Let <span
+class="math inline">\(H\leq G\)</span>, <span class="math inline">\(g
+\in gH \cap Hg\)</span>, and the right coset partition the group <span
+class="math inline">\(G\)</span>, therefore if the left coset <span
+class="math inline">\(gH\)</span> is equal to any right coset, that
+coset must be <span class="math inline">\(Hg\)</span>.</li>
+</ul>
+<h2 id="prop.-7">2.8.18 Prop.</h2>
+<ul>
+<li><strong>(a)</strong> If <span class="math inline">\(H\)</span> is a
+subgroup of a group and <span class="math inline">\(g\)</span> is an
+element of <span class="math inline">\(G\)</span>, the set <span
+class="math inline">\(gHg^{-1}\)</span> is also a subgroup.</li>
+<li><strong>(b)</strong> If a group <span
+class="math inline">\(G\)</span> has just one subgroup <span
+class="math inline">\(H\)</span> of order <span
+class="math inline">\(r\)</span>, then that subgroup is normal.</li>
+</ul>
+<h1 id="modular-arithmetic">2.9 MODULAR ARITHMETIC</h1>
+<h2 id="def.-congruent-modulo-n-skipped">2.9.1 Def. (Congruent modulo
+<span class="math inline">\(n\)</span>) (Skipped)</h2>
+<h2 id="notation.-the-set-of-congruence-classes-module-n">2.9.7
+Notation. (The Set of Congruence Classes Module <span
+class="math inline">\(n\)</span>)</h2>
+<p><span class="math display">\[
+\mathbb{Z/Z}n,\mathbb{Z}/n\mathbb{Z},\mathbb{Z}/(n),
+\]</span></p>
+<h1 id="the-correspendence-theorem">2.10 THE CORRESPENDENCE THEOREM</h1>
+<h2 id="notation.-restrict">2.10.1 Notation. (Restrict)</h2>
+<p>Let <span class="math inline">\(\varphi: G \to \mathcal{G}\)</span>
+be a group homomorphism, and let <span class="math inline">\(H \leq
+G\)</span>. We may <strong>restrict</strong> <span
+class="math inline">\(\varphi\)</span> to <span
+class="math inline">\(H\)</span>, obtaining a homomorphism <span
+class="math display">\[
+\varphi |_{H} :H \to \mathcal{G}.
+\]</span> We have <span class="math display">\[
+\ker(\varphi|_{H}) = (\ker \varphi) \cup H. (2.10.2)
+\]</span></p>
+<h2 id="prop.-8">2.10.4 Prop.</h2>
+<p>Let <span class="math inline">\(\varphi:G\to \mathcal{G}\)</span> be
+a homomorphism, <span class="math inline">\(K = \ker \varphi\)</span>,
+<span class="math inline">\(\mathcal{H} \leq \mathcal{G}\)</span>.
+Denote the inverse image <span
+class="math inline">\(\varphi^{-1}(\mathcal{H})\)</span> by <span
+class="math inline">\(H\)</span>. Then <span class="math inline">\(K
+\subset H \leq G\)</span>. If <span class="math inline">\(\mathcal{H}
+\unlhd \mathcal{G}\)</span>, then <span class="math inline">\(H \unlhd
+G\)</span>. If <span class="math inline">\(\varphi\)</span> is
+surjective and <span class="math inline">\(H \unlhd G\)</span>, then
+<span class="math inline">\(\mathcal{H} \unlhd \mathcal{G}\)</span>.</p>
+<h2 id="theorem.-correspondence-theorem">2.10.5 Theorem. (Correspondence
+Theorem)</h2>
+<p>Let <span class="math inline">\(\varphi:G \to G&#39;\)</span> be a
+<strong>surjective</strong> group homomorphism, <span
+class="math inline">\(K = \ker \varphi\)</span>, then <span
+class="math display">\[
+\{ \text{subgroups of } G \text{ that contains } K \} \leftrightarrow \{
+\text{subgroups of }G \}
+\]</span></p>
+<h1 id="product-groups">2.11 PRODUCT GROUPS</h1>
+<h2 id="def.-product-of-group">2.11.1 Def. (Product of Group)</h2>
+<p>Let <span class="math inline">\(G\)</span>, <span
+class="math inline">\(G&#39;\)</span> be groups. The product set <span
+class="math inline">\(G\times G&#39; = (a, a&#39;) , a\in G, a&#39;\in
+G&#39;\)</span>. The multiplication rule is defined as: <span
+class="math display">\[
+(a, a&#39;)\cdot(b, b&#39;) = (ab, a&#39;b&#39;)
+\]</span></p>
+<h2 id="prop.-9">2.11.3 Prop.</h2>
+<p>Let <span class="math inline">\(r\)</span> and <span
+class="math inline">\(s\)</span> be relatively prime integers. A cyclic
+group of order <span class="math inline">\(rs\)</span> is isomorphic to
+the product of a cyclic group of order <span
+class="math inline">\(r\)</span> and a cyclic group of order <span
+class="math inline">\(s\)</span>.</p>
+<h2 id="prop.-product-groups">2.11.4 Prop. (Product Groups)</h2>
+<p>Let <span class="math inline">\(H, K \leq G\)</span>, the
+multiplication map <span class="math inline">\(f: H\times K \to
+G\)</span>, defined by <span class="math inline">\(f(h,k)=hk)\)</span>.
+Its image is the set <span class="math inline">\(HK=\{hk|h\in H, k\in
+K\}\)</span>.</p>
+<ul>
+<li><strong>(a)</strong> <span class="math inline">\(f\)</span> is
+injective if and only if <span class="math inline">\(H\cup K =
+\{1\}\)</span>.</li>
+<li><strong>(b)</strong> <span class="math inline">\(f\)</span> is a
+homomorphism from the product group <span class="math inline">\(H\times
+K\)</span> to <span class="math inline">\(G\)</span> if and only if
+<span class="math inline">\(hk=kh\)</span>. <strong>(It may not be a
+homomorphism!)</strong></li>
+<li><strong>(c)</strong> If <span class="math inline">\(H\unlhd
+G\)</span>, then <span class="math inline">\(HK \leq G\)</span>.</li>
+<li><strong>(d)</strong> <span class="math inline">\(f\)</span> is an
+isomorphism from the product group <span class="math inline">\(H\times
+K\)</span> to <span class="math inline">\(G\)</span> if and only if
+<span class="math inline">\(H\cup K = \{1\}\)</span>, <span
+class="math inline">\(HK=G\)</span>, and also <span
+class="math inline">\(H, K \unlhd G\)</span>.</li>
+</ul>
+<h2 id="prop.-10">2.11.5 Prop.</h2>
+<p>There are 2 isomorphism classes of groups of order 4, the class of
+cyclic group <span class="math inline">\(C_4\)</span> of order 4 and the
+class of the Klein Four Group, which is isomorphic to <span
+class="math inline">\(C_2\times C_2\)</span>.</p>
+<h1 id="quotient-groups">2.12 QUOTIENT GROUPS</h1>
+<h2 id="def.-quotient-groups">2.12.1 Def. (Quotient Groups)</h2>
+<p>The set of cosets of a <strong>normal</strong> subgroup <span
+class="math inline">\(N\)</span> of a group <span
+class="math inline">\(G\)</span> is often denoted by <span
+class="math inline">\(G/N\)</span>.</p>
+<p>Let <span class="math inline">\(C \in G/N\)</span>, <span
+class="math inline">\([C]\)</span> is used to denote the coset. If <span
+class="math inline">\(C=aN\)</span>, we can denote <span
+class="math inline">\(\bar{a} = [C]\)</span>, <span
+class="math inline">\(\bar{G} = G / N\)</span>.</p>
+<h2 id="theorem.-1">2.12.2 Theorem.</h2>
+<p>Let <span class="math inline">\(N \unlhd G\)</span>, <span
+class="math inline">\(\bar{G} = G/N\)</span>. There is a law of
+composition on <span class="math inline">\(\bar{G}\)</span> that makes
+this set into a group, <span class="math inline">\(\pi : G\to
+G&#39;\)</span> defined by <span
+class="math inline">\(\pi(a)=\bar{a}\)</span> is a surjective
+homomorphism, and <span class="math inline">\(\ker \pi = N\)</span>.</p>
+<ul>
+<li>The map <span class="math inline">\(\pi\)</span> is often referred
+to as the <strong>canonical map</strong> from <span
+class="math inline">\(G\)</span> to <span
+class="math inline">\(G&#39;\)</span>. ‘Canonical’ indicates that this
+is the only map that we might reasonably be talking about.</li>
+</ul>
+<h2 id="corollary.-5">2.12.3 Corollary.</h2>
+<p>Let <span class="math inline">\(N \unlhd G\)</span>, and let <span
+class="math inline">\(\bar{G} \in G/N\)</span>. Let <span
+class="math inline">\(\pi : G \to \bar{G}\)</span> be the canonical
+homomorphism. Let <span class="math inline">\(a_1,\cdots,a_n\)</span> be
+elements of <span class="math inline">\(G\)</span> such that the product
+<span class="math inline">\(a_1\cdots a_k \in N\)</span>. Then <span
+class="math inline">\(\bar{a_1}\cdots \bar{a_k} = \bar{1}\)</span>.</p>
+<h2 id="lemma.-3">2.12.5 Lemma.</h2>
+<p>Let <span class="math inline">\(N \unlhd G\)</span>, the product
+<span class="math inline">\((aN)(bN)\)</span> is also a coset, and it is
+equal to the coset <span class="math inline">\(abN\)</span>.</p>
+<p>This lemma allows us to define multiplication on the set <span
+class="math inline">\(\bar{G} = G/N\)</span>. If <span
+class="math inline">\(C_1\)</span> and <span
+class="math inline">\(C_2\)</span> are cosets, then <span
+class="math inline">\([C_1][C_2] = [C_1C_2]\)</span>.</p>
+<h2 id="lemma.-4">2.12.8 Lemma.</h2>
+<p>Let <span class="math inline">\(G\)</span> be a group, and let <span
+class="math inline">\(Y\)</span> be a set with a law of composition. Let
+<span class="math inline">\(\varphi: G\to Y\)</span> be a surjective map
+with the homomorphism property, that <span
+class="math inline">\(\varphi(a)\varphi(b) = \varphi(ab), \forall a,b
+\in G\)</span>. Then <span class="math inline">\(Y\)</span> is a group
+and <span class="math inline">\(\varphi\)</span> is a homomorphism.</p>
+<h2 id="theorem.-first-isomorphism-theorem">2.12.10 Theorem. (First
+Isomorphism Theorem)</h2>
+<p>Let <span class="math inline">\(\varphi:G \to G&#39;\)</span> be a
+surjective group homomorphism with kernel <span
+class="math inline">\(N\)</span>. The quotient group <span
+class="math inline">\(\bar{G} = G/N\)</span> is isomorphic to the image
+<span class="math inline">\(G&#39;\)</span>. To be precise, let <span
+class="math inline">\(\pi:G\to G&#39;\)</span> be the canonical map.
+There is a unique isomorphism <span class="math inline">\(\bar{\varphi}:
+\bar{G} \to G&#39;\)</span> such that <span
+class="math inline">\(\varphi = \bar{\varphi} \circ \pi\)</span>.</p>
+</div>
+</body>
+</html>

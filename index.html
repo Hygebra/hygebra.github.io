@@ -36,27 +36,40 @@
     <a href="index.html#about">关于我</a> -->
   </div>
 </div>
-
-
 <div class="sidebar">
-  <h2>Navigation</h2>
-  <a href="index.html">Homepage</a>
-  <a href="blog/index.html">Blog</a>
-  <a href="test.html">Test</a>
-  <!-- <a href="#about">关于我</a> -->
-  <script>
-  // 找到 sidebar 中所有链接
-  const sidebarLinks = document.querySelectorAll('.sidebar a');
-  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
-
-  sidebarLinks.forEach(link => {
-      const linkPage = link.getAttribute('href');
-      if (linkPage === currentPage) {
-          link.classList.add('active'); // 加上高亮类
-      }
-  });
-</script>
+    <a href="https://github.com/Hygebra" target="_blank">
+        <img height="120" src="./pic/github_avater.jpg" width="100">
+    </a>
+    <a href="https://github.com/Hygebra" target="_blank">
+    <h2>Github</h2>
+    </a>
 </div>
-
+<div class="main">
+<h1 id="haishu-su-hygebra">Haishu Su (Hygebra)</h1>
+<p>B.Sc. student, <a
+href="https://hc.buaa.edu.cn/xygk/gdlgxy.htm">Shenyuan Honors
+College</a>, <a href="https://www.buaa.edu.cn/">Beihang University</a>,
+Beijing 100191, China</p>
+<p>Email: hygebra2003 [at] 163.com</p>
+<h1 id="biography">Biography</h1>
+<p>Currently I a senior undergraduate student of <a
+href="https://hc.buaa.edu.cn/xygk/gdlgxy.htm">Shenyuan Honors
+College</a>, <a href="https://www.buaa.edu.cn/">Beihang
+University</a>.</p>
+<h1 id="research-interest">Research Interest</h1>
+<p>My current research interests mainly include topic in Machine
+Learning and Data Mining.</p>
+<p>More Specifically, I mainly work on <a
+href="https://www.lamda.nju.edu.cn/publication/chap_ABL.pdf">Abductive
+Learning(ABL)</a>.</p>
+<h1 id="experience">Experience</h1>
+<p>I an currently a maintainer of <a
+href="https://github.com/AbductiveLearning/ABLkit">ABLkit</a>, an
+efficient Python toolkit for <a
+href="https://www.lamda.nju.edu.cn/publication/chap_ABL.pdf">Abductive
+Learning(ABL)</a>. For more information, please refer to <a
+href="https://ablkit.readthedocs.io/en/latest/index.html">ABLkit
+doc</a>.</p>
+</div>
 </body>
 </html>

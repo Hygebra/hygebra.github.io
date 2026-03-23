@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>michael_artin_Algebra_Chapter_5</title>
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="D:\yang\hygebra.github.io\style.css" />
+  <script
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<div class="topbar">
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="../index.html">Homepage</a>
+    <a href="index.html">Blog</a>
+    <!-- <a href="index.html#papers">论文</a>
+    <a href="index.html#about">关于我</a> -->
+  </div>
+</div>
+<div class="sidebar">
+  <!-- <h2>博客导航</h2> -->
+  <!-- <a href="#about">关于我</a> -->
+
+  <ul>
+    <!-- 一级链接 -->
+    <li><a href="index.html">博客封面</a></li>
+
+    <!-- 一级链接 + 二级列表 -->
+    <!-- <li>
+      <a href="#">研究方向</a>
+      <ul>
+        <li><a href="ml.html">机器学习</a></li>
+        <li>
+          <a href="theory.html">理论计算机科学</a> -->
+          <!-- 三级列表 -->
+          <!-- <ul>
+            <li><a href="sat.html">SAT 求解</a></li>
+            <li><a href="graph.html">图论</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li> -->
+
+    <!-- 另一个一级链接 -->
+    <li>
+      <a href="#">Abstract Algebra</a>
+      <ul>
+        <li><a href="michael_artin_Algebra_Chapter_2.html">Note of Michael Artin "Algebra" Chapter 2 "Groups"</a></li>
+        <li><a href="michael_artin_Algebra_Chapter_5.html">Note of Michael Artin "Algebra" Chapter 5 "Applications of Linear Operators" (to complete)</a></li>
+        <li><a href="michael_artin_Algebra_Chapter_6.html">Note of Michael Artin "Algebra" Chapter 6 "Symmetry" (to complete)</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+  // 找到 sidebar 中所有链接
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
+
+  sidebarLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (linkPage === currentPage) {
+          link.classList.add('active'); // 加上高亮类
+      }
+  });
+</script>
+</div>
+<div class="main">
+<h1
+id="note-of-michael-artin-algebra-chapter-5-applications-of-linear-operators-to-complete">Note
+of Michael Artin “Algebra” Chapter 5 “Applications of Linear Operators”
+(to complete)</h1>
+<h1 id="题记">题记</h1>
+<p>说实话这一部分看起来和抽象代数关系不大。但是这一部分涉及了一元向量函数和“矩阵函数”的连续性、求导和常微分方程的计算。常微分方程北航的数学分析使用的是北大伍胜健的教材，是不教微分方程的。另外有刚刚接触的群论在正交变换上的应用和数形结合，因此值得一看。</p>
+<h1 id="orthogonal-matrices-and-rotations">5.1 ORTHOGONAL MATRICES AND
+ROTATIONS</h1>
+<h2 id="def.-dot-product-skipped">5.1.1 Def. (Dot Product)
+(Skipped)</h2>
+<ul>
+<li><p>The square of the length of a vector <span
+class="math inline">\(X\)</span> is <span class="math inline">\((X\cdot
+X) = X^TX\)</span>.</p></li>
+<li><p>A vector <span class="math inline">\(X\)</span> is
+<strong>orthogonal</strong> to another vector <span
+class="math inline">\(Y\)</span>, written <span class="math inline">\(X
+\perp Y\)</span> if and only if <span class="math inline">\(X^TY =
+0\)</span>. ## 5.1.5 Theo. (Pythagoras) If <span
+class="math inline">\(X\perp Y\)</span> and <span
+class="math inline">\(Z = X+Y\)</span>, then <span
+class="math inline">\(|Z|^2=|X|^2 + |Y|^2\)</span>. ## 5.1.7 Lemma. Any
+set <span class="math inline">\((v_1,\cdots,v_n)\)</span> of orthogonal
+nonzero vectors in <span class="math inline">\(\mathbb{R}^n\)</span> is
+independent. ## 5.1.9 Def. A real <span class="math inline">\(n\times
+n\)</span> matrix <span class="math inline">\(A\)</span> is
+<strong>orthogonal</strong> if <span
+class="math inline">\(A^TA=I\)</span>, which is to say, <span
+class="math inline">\(A\)</span> is invertible and its inverse is <span
+class="math inline">\(A^T\)</span>. ## 5.1.10 Lemma. An <span
+class="math inline">\(n\times n\)</span> matrix <span
+class="math inline">\(A\)</span> is orthogonal if and only if ites
+columns form an orthogonal basis of <span
+class="math inline">\(\mathbb{R}^n\)</span>. ## 5.1.11 Prop.</p></li>
+<li><p>The product, inverse, transpose of orthogonal matrices is
+orthogonal. The orthogonal matrices form a subgroup <span
+class="math inline">\(O_n\)</span> of <span
+class="math inline">\(GL_n\)</span>, the <strong>orthogonal
+group</strong>.</p></li>
+<li><p><span class="math inline">\(\det (o) = \pm 1, o \in O_n\)</span>.
+The orthogonal matrices with determinant <span
+class="math inline">\(1\)</span> form a subgroup <span
+class="math inline">\(SO_n\)</span> of <span
+class="math inline">\(O_n\)</span> of index <span
+class="math inline">\(2\)</span>, the <strong>special orthogonal
+group</strong>. ## 5.1.12 Def. (Orthogonal Operator) An orthogonal
+operator <span class="math inline">\(T\)</span> on <span
+class="math inline">\(\mathbb{R}^n\)</span> is a linear operator that
+preserves the dot product: <span class="math display">\[
+(TX \cdot TY) = (X\cdot Y), \forall X,Y \in \mathbb{R}^n
+\]</span> ## 5.1.13 Prop. A linear operator <span
+class="math inline">\(T\)</span> on <span
+class="math inline">\(\mathbb{R}^n\)</span> is orthogonal if and only if
+<span class="math inline">\(\forall X, (TX\cdot TX) = (X\cdot
+X)\)</span>. ## 5.1.14 Prop. A linear operator <span
+class="math inline">\(T\)</span> on <span
+class="math inline">\(\mathbb{R}^n\)</span> is orthogonal if and only if
+its matrix <span class="math inline">\(A\)</span> with respect to the
+standard basis is an orthogonal matrix. ## 5.1.15 Lemma. Let <span
+class="math inline">\(M\)</span> be an <span
+class="math inline">\(n\times n\)</span> matrix, If <span
+class="math inline">\(X^TMY=0\)</span> for all column vectors <span
+class="math inline">\(X\)</span> and <span
+class="math inline">\(Y\)</span>, then <span
+class="math inline">\(M=0\)</span>. ## 5.1.17 Theo.</p></li>
+<li><p><strong>(a)</strong> The orthogonal <span
+class="math inline">\(2\times 2\)</span> matrices with determinant <span
+class="math inline">\(1\)</span> are the matrices <span
+class="math display">\[
+R = \begin{bmatrix}
+c  &amp; -s\\
+s &amp; c
+\end{bmatrix}
+\]</span></p></li>
+<li><p><strong>(b)</strong> The orthogonal <span
+class="math inline">\(2\times 2\)</span> matrices with determinant <span
+class="math inline">\(-1\)</span> are the matrices <span
+class="math display">\[
+S = \begin{bmatrix}
+c  &amp; s\\
+s &amp; -c
+\end{bmatrix} = RS_0
+\]</span></p>
+<ul>
+<li>The matrix <span class="math inline">\(S\)</span> reflects the plane
+about the one-dimensional subspace of <span
+class="math inline">\(\mathbb{R}^2\)</span> that makes an angle <span
+class="math inline">\(\frac{1}{2}\theta\)</span> with the <span
+class="math inline">\(e_1\)</span>-axis.</li>
+</ul></li>
+</ul>
+<h2 id="def.-rotation-of-mathbbr3">5.1.22 Def. (Rotation of <span
+class="math inline">\(\mathbb{R}^3\)</span>)</h2>
+<p>A <strong>rotation</strong> of <span
+class="math inline">\(\mathbb{R}^3\)</span> about the origin is a linear
+operator <span class="math inline">\(\rho\)</span> with these
+properties:</p>
+<ul>
+<li><span class="math inline">\(\rho\)</span> fixes a unit vector <span
+class="math inline">\(u\)</span>, called a <strong>pole</strong> of
+<span class="math inline">\(\rho\)</span>, and</li>
+<li><span class="math inline">\(\rho\)</span> rotates the
+two-dimensional subspace <span class="math inline">\(W\)</span>
+orthogonal to <span class="math inline">\(u\)</span>.</li>
+</ul>
+<p>The angle <span class="math inline">\(\theta\)</span> perpendicular
+to the pole <span class="math inline">\(u\)</span> follows the “Right
+Hand Rule”. When <span class="math inline">\(u\)</span> is the <span
+class="math inline">\(e_1\)</span>, the set <span
+class="math inline">\((e_2,e_3)\)</span> will be a basis for <span
+class="math inline">\(W\)</span>, and the matrix of <span
+class="math inline">\(\rho\)</span> woll have the form <span
+class="math display">\[
+M = \begin{bmatrix}
+1 &amp; 0 &amp; 0 \\
+0 &amp; c &amp; -s \\
+0 &amp; s &amp; c
+\end{bmatrix}
+\]</span> A rotation is not the identity is described bt the pair <span
+class="math inline">\((u, \theta)\)</span>, called a
+<strong>spin</strong>, that consosts of a pole <span
+class="math inline">\(u\)</span> and a nonzero angle of rotation <span
+class="math inline">\(\theta\)</span>. ## 5.1.25 Theo. (Euler’s Theorem)
+The <span class="math inline">\(3\times 3\)</span> rotation matrices are
+the orthogonal <span class="math inline">\(3\times 3\)</span> matrices
+with determinant <span class="math inline">\(1\)</span>, the elements of
+the special orthogonal group <span class="math inline">\(SO_3\)</span>
+(three-dimensional <strong>rotation groups</strong>). ## 5.1.26 Cor. The
+composition of rotations about any two axes is a rotation about some
+other axis. ## 5.1.28 Cor. Let <span class="math inline">\(M\)</span> be
+the matrix in <span class="math inline">\(SO_3\)</span> that represents
+the rotation <span class="math inline">\(\rho_{(u,\alpha)}\)</span> with
+spin <span class="math inline">\((u,\alpha)\)</span>. -
+<strong>(a)</strong> The trace of <span class="math inline">\(M\)</span>
+is <span class="math inline">\(1+2\cos \alpha\)</span>. - PS: The
+matrices are communicative in trace. - <strong>(b)</strong> Let <span
+class="math inline">\(B \in SO_3\)</span>, and let <span
+class="math inline">\(u&#39; = Bu\)</span>, The conjugate <span
+class="math inline">\(M&#39; = BMB^T\)</span> represents the rotation
+<span class="math inline">\(\rho(u&#39;, \alpha)\)</span> with spin
+<span class="math inline">\((u&#39;, \alpha)\)</span>. ## 5.1.29 Lemma.
+A <span class="math inline">\(3\times 3\)</span> orthogonal matrix <span
+class="math inline">\(M\)</span> with determinant <span
+class="math inline">\(1\)</span> has an eigenvalue equal to <span
+class="math inline">\(1\)</span>.</p>
+<h1 id="using-continuity">5.2 USING CONTINUITY</h1>
+<h2 id="prop.-continuity-of-roots">5.2.1 Prop. (Continuity of
+Roots)</h2>
+<p>Let <span class="math inline">\(p_k(t)\)</span> be a sequence of
+monic polynomials of degree <span class="math inline">\(\leq n\)</span>,
+and let <span class="math inline">\(p(t)\)</span> be another monic
+polynomial of degree <span class="math inline">\(n\)</span>. Let <span
+class="math inline">\(\alpha_{k,1},\cdots ,\alpha_{k,n}\)</span> and
+<span class="math inline">\(a_1,\cdots ,a_n\)</span> denote the roots of
+these polynomials. - <strong>(a)</strong> If <span
+class="math inline">\(\alpha_{k,v} \to \alpha_v\)</span> for <span
+class="math inline">\(v = 1,\cdots ,n\)</span>, then <span
+class="math inline">\(p_k\to p\)</span>. - <strong>(b)</strong>
+Conversely, if <span class="math inline">\(p_k\to p\)</span>, the roots
+<span class="math inline">\(\alpha_{k,v}\)</span> of <span
+class="math inline">\(p_k\)</span> can be numbered in such a way that
+<span class="math inline">\(\alpha_{k,v}\to \alpha_v\)</span> for each
+<span class="math inline">\(v=1,\cdots ,n\)</span>. ## 5.2.2 Prop. Let
+<span class="math inline">\(A\)</span> be an <span
+class="math inline">\(n\times n\)</span> complex matrix. -
+<strong>(a)</strong> There is a sequance of matrix <span
+class="math inline">\(A_k\)</span> that converges to <span
+class="math inline">\(A\)</span>, and such that for all <span
+class="math inline">\(k\)</span> the characteristic polynomial <span
+class="math inline">\(p_k(t)\)</span> of <span
+class="math inline">\(A\)</span>. - <strong>(b)</strong> If a
+subsequence <span class="math inline">\(A_k\)</span> of matrices
+converges to <span class="math inline">\(A\)</span>, the sequence <span
+class="math inline">\(p_k(t)\)</span> of its characteristic polynomials
+converges to the characteristic polynomial <span
+class="math inline">\(p(t)\)</span> of <span
+class="math inline">\(A\)</span>. - <strong>(c)</strong> Let <span
+class="math inline">\(\lambda_i\)</span> be the roots of the
+characteristic polynomial <span class="math inline">\(p\)</span>. If
+<span class="math inline">\(A_k \to A\)</span>, the roots <span
+class="math inline">\(\lambda_{k,i}\)</span> of <span
+class="math inline">\(p_k\)</span> can be numbered so that <span
+class="math inline">\(\lambda_{k,i} \to \lambda_i\)</span> for each
+<span class="math inline">\(i\)</span>. ## 5.2.3 Theo. (Cayley-Hamilton
+Theorem) (Skipped) 特征多项式代入原矩阵后是零化多项式。</p>
+<h1 id="systems-of-differential-equations">5.3 SYSTEMS OF DIFFERENTIAL
+EQUATIONS</h1>
+<p>这一张是单元向量函数和矩阵函数的常微分方程的有解性，并给出了矩阵可对角化时求解方式。
+## 5.3.7 A system of homogeneous linear, first-order, contant
+coefficient differential equations is a matrix equation of the form
+<span class="math display">\[
+\frac{\mathrm{d}X}{\mathrm{d}t}=AX
+\]</span> ## 5.3.11~5.3.13 If <span class="math inline">\(A =
+\mathrm{diag}(\lambda_1, \cdots, \lambda_n)\)</span>, we have <span
+class="math display">\[
+x_i = c_ie^{\lambda_i t}
+\]</span> Therefore, if <span class="math inline">\(V\)</span> is an
+eigenvector for <span class="math inline">\(A\)</span> with eigenvalue
+<span class="math inline">\(\lambda\)</span>, i.e., if <span
+class="math inline">\(AV=\lambda V\)</span>, then <span
+class="math display">\[
+X=e^{\lambda t}V
+\]</span> is a particular solution of (5.3.7). Here it is interpreted as
+the product of the variable scalar <span
+class="math inline">\(e^{\lambda t}\)</span> and the constant vector
+<span class="math inline">\(V\)</span>. <span class="math display">\[
+\frac{\mathrm{d}}{\mathrm{d}t} e^{\lambda t} V = \lambda e^{\lambda t}V
+= A e^{\lambda t} V
+\]</span> This observation allows us ti solve (5.3.7) whenever the
+matrix <span class="math inline">\(A\)</span> has distinct real
+eigenvalues. In that case every solution will be a linear combination of
+the special solutions (5.3.13). To work out this, it is convenient to
+diagonalize. ## 5.3.15 Prop. Let <span class="math inline">\(A_{n\times
+n}\)</span> be a matrix, and <span class="math inline">\(P\)</span> be
+an invertible matrix such that <span class="math inline">\(\Lambda =
+P^{-1}AP = \mathrm{diag} (\lambda_1, \cdots, \lambda_n)\)</span>. The
+general solution to <span
+class="math inline">\(\frac{\mathrm{d}X}{\mathrm{d}t} =AX\)</span> is
+<span class="math inline">\(X=P\widetilde{X}\)</span>, where <span
+class="math inline">\(\widetilde{X}=(c_1 e^{\lambda_1 t}, \cdots, c_n
+e^{\lambda_n t})^T\)</span> solves the equation <span
+class="math inline">\(\frac{\mathrm{d}\widetilde{X}}{\mathrm{d}t}
+=\Lambda \widetilde{X}\)</span>.</p>
+</div>
+</body>
+</html>
