@@ -24,8 +24,8 @@ $rootTopbarFile = Join-Path (Get-Location) "topbar.html"
 $blogTopbarFile = Join-Path (Get-Location) "blog\topbar.html"
 $rootSidebarFile = Join-Path (Get-Location) "sidebar.html"
 $blogSidebarFile = Join-Path (Get-Location) "blog\sidebar.html"
-$rootCssFile = Join-Path (Get-Location) "style.css"
-$blogCssFile = Join-Path (Get-Location) "style.css"
+$rootCssFile = "style.css"
+$blogCssFile = "..\style.css"
 $templateFile = Join-Path (Get-Location) "template.html"
 
 # ---------- 遍历所有 Markdown ----------
