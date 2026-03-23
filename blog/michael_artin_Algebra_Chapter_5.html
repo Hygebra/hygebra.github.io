@@ -99,70 +99,86 @@ ROTATIONS</h1>
 <h2 id="def.-dot-product-skipped">5.1.1 Def. (Dot Product)
 (Skipped)</h2>
 <ul>
-<li><p>The square of the length of a vector <span
+<li>The square of the length of a vector <span
 class="math inline">\(X\)</span> is <span class="math inline">\((X\cdot
-X) = X^TX\)</span>.</p></li>
-<li><p>A vector <span class="math inline">\(X\)</span> is
+X) = X^TX\)</span>.</li>
+<li>A vector <span class="math inline">\(X\)</span> is
 <strong>orthogonal</strong> to another vector <span
 class="math inline">\(Y\)</span>, written <span class="math inline">\(X
 \perp Y\)</span> if and only if <span class="math inline">\(X^TY =
-0\)</span>. ## 5.1.5 Theo. (Pythagoras) If <span
-class="math inline">\(X\perp Y\)</span> and <span
+0\)</span>.</li>
+</ul>
+<h2 id="theo.-pythagoras">5.1.5 Theo. (Pythagoras)</h2>
+<p>If <span class="math inline">\(X\perp Y\)</span> and <span
 class="math inline">\(Z = X+Y\)</span>, then <span
-class="math inline">\(|Z|^2=|X|^2 + |Y|^2\)</span>. ## 5.1.7 Lemma. Any
-set <span class="math inline">\((v_1,\cdots,v_n)\)</span> of orthogonal
-nonzero vectors in <span class="math inline">\(\mathbb{R}^n\)</span> is
-independent. ## 5.1.9 Def. A real <span class="math inline">\(n\times
-n\)</span> matrix <span class="math inline">\(A\)</span> is
-<strong>orthogonal</strong> if <span
+class="math inline">\(|Z|^2=|X|^2 + |Y|^2\)</span>.</p>
+<h2 id="lemma.">5.1.7 Lemma.</h2>
+<p>Any set <span class="math inline">\((v_1,\cdots,v_n)\)</span> of
+orthogonal nonzero vectors in <span
+class="math inline">\(\mathbb{R}^n\)</span> is independent.</p>
+<h2 id="def.">5.1.9 Def.</h2>
+<p>A real <span class="math inline">\(n\times n\)</span> matrix <span
+class="math inline">\(A\)</span> is <strong>orthogonal</strong> if <span
 class="math inline">\(A^TA=I\)</span>, which is to say, <span
 class="math inline">\(A\)</span> is invertible and its inverse is <span
-class="math inline">\(A^T\)</span>. ## 5.1.10 Lemma. An <span
-class="math inline">\(n\times n\)</span> matrix <span
+class="math inline">\(A^T\)</span>.</p>
+<h2 id="lemma.-1">5.1.10 Lemma.</h2>
+<p>An <span class="math inline">\(n\times n\)</span> matrix <span
 class="math inline">\(A\)</span> is orthogonal if and only if ites
 columns form an orthogonal basis of <span
-class="math inline">\(\mathbb{R}^n\)</span>. ## 5.1.11 Prop.</p></li>
-<li><p>The product, inverse, transpose of orthogonal matrices is
+class="math inline">\(\mathbb{R}^n\)</span>.</p>
+<h2 id="prop.">5.1.11 Prop.</h2>
+<ul>
+<li>The product, inverse, transpose of orthogonal matrices is
 orthogonal. The orthogonal matrices form a subgroup <span
 class="math inline">\(O_n\)</span> of <span
 class="math inline">\(GL_n\)</span>, the <strong>orthogonal
-group</strong>.</p></li>
-<li><p><span class="math inline">\(\det (o) = \pm 1, o \in O_n\)</span>.
+group</strong>.</li>
+<li><span class="math inline">\(\det (o) = \pm 1, o \in O_n\)</span>.
 The orthogonal matrices with determinant <span
 class="math inline">\(1\)</span> form a subgroup <span
 class="math inline">\(SO_n\)</span> of <span
 class="math inline">\(O_n\)</span> of index <span
 class="math inline">\(2\)</span>, the <strong>special orthogonal
-group</strong>. ## 5.1.12 Def. (Orthogonal Operator) An orthogonal
-operator <span class="math inline">\(T\)</span> on <span
-class="math inline">\(\mathbb{R}^n\)</span> is a linear operator that
-preserves the dot product: <span class="math display">\[
+group</strong>.</li>
+</ul>
+<h2 id="def.-orthogonal-operator">5.1.12 Def. (Orthogonal Operator)</h2>
+<p>An orthogonal operator <span class="math inline">\(T\)</span> on
+<span class="math inline">\(\mathbb{R}^n\)</span> is a linear operator
+that preserves the dot product: <span class="math display">\[
 (TX \cdot TY) = (X\cdot Y), \forall X,Y \in \mathbb{R}^n
-\]</span> ## 5.1.13 Prop. A linear operator <span
-class="math inline">\(T\)</span> on <span
+\]</span></p>
+<h2 id="prop.-1">5.1.13 Prop.</h2>
+<p>A linear operator <span class="math inline">\(T\)</span> on <span
 class="math inline">\(\mathbb{R}^n\)</span> is orthogonal if and only if
 <span class="math inline">\(\forall X, (TX\cdot TX) = (X\cdot
-X)\)</span>. ## 5.1.14 Prop. A linear operator <span
-class="math inline">\(T\)</span> on <span
+X)\)</span>.</p>
+<h2 id="prop.-2">5.1.14 Prop.</h2>
+<p>A linear operator <span class="math inline">\(T\)</span> on <span
 class="math inline">\(\mathbb{R}^n\)</span> is orthogonal if and only if
 its matrix <span class="math inline">\(A\)</span> with respect to the
-standard basis is an orthogonal matrix. ## 5.1.15 Lemma. Let <span
-class="math inline">\(M\)</span> be an <span
+standard basis is an orthogonal matrix.</p>
+<h2 id="lemma.-2">5.1.15 Lemma.</h2>
+<p>Let <span class="math inline">\(M\)</span> be an <span
 class="math inline">\(n\times n\)</span> matrix, If <span
 class="math inline">\(X^TMY=0\)</span> for all column vectors <span
 class="math inline">\(X\)</span> and <span
 class="math inline">\(Y\)</span>, then <span
-class="math inline">\(M=0\)</span>. ## 5.1.17 Theo.</p></li>
-<li><p><strong>(a)</strong> The orthogonal <span
+class="math inline">\(M=0\)</span>.</p>
+<h2 id="theo.">5.1.17 Theo.</h2>
+<ul>
+<li><strong>(a)</strong> The orthogonal <span
 class="math inline">\(2\times 2\)</span> matrices with determinant <span
-class="math inline">\(1\)</span> are the matrices <span
-class="math display">\[
+class="math inline">\(1\)</span> are the matrices</li>
+</ul>
+<p><span class="math display">\[
 R = \begin{bmatrix}
 c  &amp; -s\\
 s &amp; c
 \end{bmatrix}
-\]</span></p></li>
-<li><p><strong>(b)</strong> The orthogonal <span
+\]</span></p>
+<ul>
+<li><strong>(b)</strong> The orthogonal <span
 class="math inline">\(2\times 2\)</span> matrices with determinant <span
 class="math inline">\(-1\)</span> are the matrices <span
 class="math display">\[
@@ -170,7 +186,7 @@ S = \begin{bmatrix}
 c  &amp; s\\
 s &amp; -c
 \end{bmatrix} = RS_0
-\]</span></p>
+\]</span>
 <ul>
 <li>The matrix <span class="math inline">\(S\)</span> reflects the plane
 about the one-dimensional subspace of <span
@@ -210,27 +226,33 @@ M = \begin{bmatrix}
 class="math inline">\((u, \theta)\)</span>, called a
 <strong>spin</strong>, that consosts of a pole <span
 class="math inline">\(u\)</span> and a nonzero angle of rotation <span
-class="math inline">\(\theta\)</span>. ## 5.1.25 Theo. (Euler’s Theorem)
-The <span class="math inline">\(3\times 3\)</span> rotation matrices are
-the orthogonal <span class="math inline">\(3\times 3\)</span> matrices
-with determinant <span class="math inline">\(1\)</span>, the elements of
-the special orthogonal group <span class="math inline">\(SO_3\)</span>
-(three-dimensional <strong>rotation groups</strong>). ## 5.1.26 Cor. The
-composition of rotations about any two axes is a rotation about some
-other axis. ## 5.1.28 Cor. Let <span class="math inline">\(M\)</span> be
-the matrix in <span class="math inline">\(SO_3\)</span> that represents
-the rotation <span class="math inline">\(\rho_{(u,\alpha)}\)</span> with
-spin <span class="math inline">\((u,\alpha)\)</span>. -
-<strong>(a)</strong> The trace of <span class="math inline">\(M\)</span>
-is <span class="math inline">\(1+2\cos \alpha\)</span>. - PS: The
-matrices are communicative in trace. - <strong>(b)</strong> Let <span
+class="math inline">\(\theta\)</span>.</p>
+<h2 id="theo.-eulers-theorem">5.1.25 Theo. (Euler’s Theorem)</h2>
+<p>The <span class="math inline">\(3\times 3\)</span> rotation matrices
+are the orthogonal <span class="math inline">\(3\times 3\)</span>
+matrices with determinant <span class="math inline">\(1\)</span>, the
+elements of the special orthogonal group <span
+class="math inline">\(SO_3\)</span> (three-dimensional <strong>rotation
+groups</strong>).</p>
+<h2 id="cor.">5.1.26 Cor.</h2>
+<p>The composition of rotations about any two axes is a rotation about
+some other axis.</p>
+<h2 id="cor.-1">5.1.28 Cor.</h2>
+<p>Let <span class="math inline">\(M\)</span> be the matrix in <span
+class="math inline">\(SO_3\)</span> that represents the rotation <span
+class="math inline">\(\rho_{(u,\alpha)}\)</span> with spin <span
+class="math inline">\((u,\alpha)\)</span>. - <strong>(a)</strong> The
+trace of <span class="math inline">\(M\)</span> is <span
+class="math inline">\(1+2\cos \alpha\)</span>. - PS: The matrices are
+communicative in trace. - <strong>(b)</strong> Let <span
 class="math inline">\(B \in SO_3\)</span>, and let <span
 class="math inline">\(u&#39; = Bu\)</span>, The conjugate <span
 class="math inline">\(M&#39; = BMB^T\)</span> represents the rotation
 <span class="math inline">\(\rho(u&#39;, \alpha)\)</span> with spin
-<span class="math inline">\((u&#39;, \alpha)\)</span>. ## 5.1.29 Lemma.
-A <span class="math inline">\(3\times 3\)</span> orthogonal matrix <span
-class="math inline">\(M\)</span> with determinant <span
+<span class="math inline">\((u&#39;, \alpha)\)</span>.</p>
+<h2 id="lemma.-3">5.1.29 Lemma.</h2>
+<p>A <span class="math inline">\(3\times 3\)</span> orthogonal matrix
+<span class="math inline">\(M\)</span> with determinant <span
 class="math inline">\(1\)</span> has an eigenvalue equal to <span
 class="math inline">\(1\)</span>.</p>
 <h1 id="using-continuity">5.2 USING CONTINUITY</h1>
@@ -250,8 +272,9 @@ Conversely, if <span class="math inline">\(p_k\to p\)</span>, the roots
 <span class="math inline">\(\alpha_{k,v}\)</span> of <span
 class="math inline">\(p_k\)</span> can be numbered in such a way that
 <span class="math inline">\(\alpha_{k,v}\to \alpha_v\)</span> for each
-<span class="math inline">\(v=1,\cdots ,n\)</span>. ## 5.2.2 Prop. Let
-<span class="math inline">\(A\)</span> be an <span
+<span class="math inline">\(v=1,\cdots ,n\)</span>.</p>
+<h2 id="prop.-3">5.2.2 Prop.</h2>
+<p>Let <span class="math inline">\(A\)</span> be an <span
 class="math inline">\(n\times n\)</span> complex matrix. -
 <strong>(a)</strong> There is a sequance of matrix <span
 class="math inline">\(A_k\)</span> that converges to <span
@@ -271,18 +294,22 @@ characteristic polynomial <span class="math inline">\(p\)</span>. If
 class="math inline">\(\lambda_{k,i}\)</span> of <span
 class="math inline">\(p_k\)</span> can be numbered so that <span
 class="math inline">\(\lambda_{k,i} \to \lambda_i\)</span> for each
-<span class="math inline">\(i\)</span>. ## 5.2.3 Theo. (Cayley-Hamilton
-Theorem) (Skipped) 特征多项式代入原矩阵后是零化多项式。</p>
+<span class="math inline">\(i\)</span>.</p>
+<h2 id="theo.-cayley-hamilton-theorem-skipped">5.2.3 Theo.
+(Cayley-Hamilton Theorem) (Skipped)</h2>
+<p>特征多项式代入原矩阵后是零化多项式。</p>
 <h1 id="systems-of-differential-equations">5.3 SYSTEMS OF DIFFERENTIAL
 EQUATIONS</h1>
-<p>这一张是单元向量函数和矩阵函数的常微分方程的有解性，并给出了矩阵可对角化时求解方式。
-## 5.3.7 A system of homogeneous linear, first-order, contant
-coefficient differential equations is a matrix equation of the form
-<span class="math display">\[
-\frac{\mathrm{d}X}{\mathrm{d}t}=AX
-\]</span> ## 5.3.11~5.3.13 If <span class="math inline">\(A =
-\mathrm{diag}(\lambda_1, \cdots, \lambda_n)\)</span>, we have <span
+<p>这一张是单元向量函数和矩阵函数的常微分方程的有解性，并给出了矩阵可对角化时求解方式。</p>
+<h2 id="section">5.3.7</h2>
+<p>A system of homogeneous linear, first-order, contant coefficient
+differential equations is a matrix equation of the form <span
 class="math display">\[
+\frac{\mathrm{d}X}{\mathrm{d}t}=AX
+\]</span></p>
+<h2 id="section-1">5.3.11~5.3.13</h2>
+<p>If <span class="math inline">\(A = \mathrm{diag}(\lambda_1, \cdots,
+\lambda_n)\)</span>, we have <span class="math display">\[
 x_i = c_ie^{\lambda_i t}
 \]</span> Therefore, if <span class="math inline">\(V\)</span> is an
 eigenvector for <span class="math inline">\(A\)</span> with eigenvalue
@@ -300,11 +327,12 @@ class="math inline">\(e^{\lambda t}\)</span> and the constant vector
 matrix <span class="math inline">\(A\)</span> has distinct real
 eigenvalues. In that case every solution will be a linear combination of
 the special solutions (5.3.13). To work out this, it is convenient to
-diagonalize. ## 5.3.15 Prop. Let <span class="math inline">\(A_{n\times
-n}\)</span> be a matrix, and <span class="math inline">\(P\)</span> be
-an invertible matrix such that <span class="math inline">\(\Lambda =
-P^{-1}AP = \mathrm{diag} (\lambda_1, \cdots, \lambda_n)\)</span>. The
-general solution to <span
+diagonalize.</p>
+<h2 id="prop.-4">5.3.15 Prop.</h2>
+<p>Let <span class="math inline">\(A_{n\times n}\)</span> be a matrix,
+and <span class="math inline">\(P\)</span> be an invertible matrix such
+that <span class="math inline">\(\Lambda = P^{-1}AP = \mathrm{diag}
+(\lambda_1, \cdots, \lambda_n)\)</span>. The general solution to <span
 class="math inline">\(\frac{\mathrm{d}X}{\mathrm{d}t} =AX\)</span> is
 <span class="math inline">\(X=P\widetilde{X}\)</span>, where <span
 class="math inline">\(\widetilde{X}=(c_1 e^{\lambda_1 t}, \cdots, c_n
