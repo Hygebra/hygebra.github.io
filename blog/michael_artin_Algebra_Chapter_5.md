@@ -76,7 +76,7 @@ M = \begin{bmatrix}
 0 & s & c
 \end{bmatrix} 
 $$
-A rotation is not the identity is described bt the pair $(u, \theta)$, called a **spin**, that consosts of a pole $u$ and a nonzero angle of rotation $\theta$.
+A rotation is not the identity is described bt the pair $(u, \theta)$, called a **spin**, that consists of a pole $u$ and a nonzero angle of rotation $\theta$.
 
 ## 5.1.25 Theo. (Euler's Theorem)
 The $3\times 3$ rotation matrices are the orthogonal $3\times 3$ matrices with determinant $1$, the elements of the special orthogonal group $SO_3$ (three-dimensional **rotation groups**).
@@ -99,13 +99,18 @@ A $3\times 3$ orthogonal matrix $M$ with determinant $1$ has an  eigenvalue equa
 
 ## 5.2.1 Prop. (Continuity of Roots)
 Let $p_k(t)$ be a sequence of monic polynomials of degree $\leq n$, and let $p(t)$ be another monic polynomial of degree $n$. Let $\alpha_{k,1},\cdots ,\alpha_{k,n}$ and $a_1,\cdots ,a_n$ denote the roots of these polynomials.
+
 - **(a)** If $\alpha_{k,v} \to \alpha_v$ for $v = 1,\cdots ,n$, then $p_k\to p$.
+
 - **(b)** Conversely, if $p_k\to p$, the roots $\alpha_{k,v}$ of $p_k$ can be numbered in such a way that $\alpha_{k,v}\to \alpha_v$ for each $v=1,\cdots ,n$.
 
 ## 5.2.2 Prop.
 Let $A$ be an $n\times n$ complex matrix.
+
 - **(a)** There is a sequance of matrix $A_k$ that converges to $A$, and such that for all $k$ the characteristic polynomial $p_k(t)$ of $A$.
+
 - **(b)** If a subsequence $A_k$ of matrices converges to $A$, the sequence $p_k(t)$ of its characteristic polynomials converges to the characteristic polynomial $p(t)$ of $A$.
+
 - **(c)** Let $\lambda_i$ be the roots of the characteristic polynomial $p$. If $A_k \to A$, the roots $\lambda_{k,i}$ of $p_k$ can be numbered so that $\lambda_{k,i} \to \lambda_i$ for each $i$.
 
 ## 5.2.3 Theo. (Cayley-Hamilton Theorem) (Skipped)

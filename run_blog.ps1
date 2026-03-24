@@ -27,6 +27,8 @@ $blogSidebarFile = Join-Path (Get-Location) "blog\sidebar.html"
 $rootCssFile = "style.css"
 $blogCssFile = "..\style.css"
 $templateFile = Join-Path (Get-Location) "template.html"
+$rootAvatarFile = "favicon.html"
+$blogAvatarFile = "favicon.html"
 
 # ---------- 遍历所有 Markdown ----------
 $allMdFiles = Get-ChildItem -Path . -Recurse -Filter *.md
@@ -72,5 +74,5 @@ for ($i = 0; $i -lt $total; $i++) {
     Write-Host "Executing: $cmd"
 
     # & "$pandocExe" $f -o $outFile --mathjax --css "$cssFile" --template="$templateFile" --include-before-body "$topbarFile" --include-before-body "$sidebarFile"
-    & "$pandocExe" $f -o $outFile --mathjax --css "$cssFile" --include-before-body "$topbarFile" --include-before-body "$sidebarFile"
+    & "$pandocExe" $f -o $outFile --mathjax --css "$cssFile" --include-before-body "$topbarFile" --include-before-body "$sidebarFile" --include-in-header "favicon.html"
 }
