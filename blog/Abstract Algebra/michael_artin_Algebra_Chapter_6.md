@@ -1,5 +1,3 @@
-<div class="main">
-
 # Note of Michael Artin "Algebra" Chapter 6 "Symmetry" (to complete)
 
 
@@ -64,5 +62,3 @@ is a group homomorphism.
 
 # 6.3 ISOMETRIES OF THE PLANE
 
-
-</div>

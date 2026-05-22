@@ -1,5 +1,3 @@
-<div class="main">
-
 # Note of Michael Artin "Algebra" Chapter 5 "Applications of Linear Operators" (to complete)
 
 # 题记
@@ -94,18 +92,17 @@ Let $M$ be the matrix in $SO_3$ that represents the rotation $\rho_{(u,\alpha)}$
 A $3\times 3$ orthogonal matrix $M$ with determinant $1$ has an  eigenvalue equal to $1$.
 
 
-
-# 5.2 USING CONTINUITY
+\# 5.2 USING CONTINUITY
 
 ## 5.2.1 Prop. (Continuity of Roots)
-Let $p_k(t)$ be a sequence of monic polynomials of degree $\leq n$, and let $p(t)$ be another monic polynomial of degree $n$. Let $\alpha_{k,1},\cdots ,\alpha_{k,n}$ and $a_1,\cdots ,a_n$ denote the roots of these polynomials.
+- Let $p_k(t)$ be a sequence of monic polynomials of degree $\leq n$, and let $p(t)$ be another monic polynomial of degree $n$. Let $\alpha_{k,1},\cdots ,\alpha_{k,n}$ and $a_1,\cdots ,a_n$ denote the roots of these polynomials.
 
 - **(a)** If $\alpha_{k,v} \to \alpha_v$ for $v = 1,\cdots ,n$, then $p_k\to p$.
 
 - **(b)** Conversely, if $p_k\to p$, the roots $\alpha_{k,v}$ of $p_k$ can be numbered in such a way that $\alpha_{k,v}\to \alpha_v$ for each $v=1,\cdots ,n$.
 
 ## 5.2.2 Prop.
-Let $A$ be an $n\times n$ complex matrix.
+- Let $A$ be an $n\times n$ complex matrix.
 
 - **(a)** There is a sequance of matrix $A_k$ that converges to $A$, and such that for all $k$ the characteristic polynomial $p_k(t)$ of $A$.
 
@@ -117,7 +114,7 @@ Let $A$ be an $n\times n$ complex matrix.
 特征多项式代入原矩阵后是零化多项式。
 
 
-# 5.3 SYSTEMS OF DIFFERENTIAL EQUATIONS
+\# 5.3 SYSTEMS OF DIFFERENTIAL EQUATIONS
 这一张是单元向量函数和矩阵函数的常微分方程的有解性，并给出了矩阵可对角化时求解方式。
 
 ## 5.3.7 
@@ -137,7 +134,7 @@ X=e^{\lambda t}V
 $$
 is a particular solution of (5.3.7). Here it is interpreted as the product of the variable scalar $e^{\lambda t}$ and the constant vector $V$.
 $$
-\frac{\mathrm{d}}{\mathrm{d}t} e^{\lambda t} V = \lambda e^{\lambda t}V = A e^{\lambda t} V
+\frac{\mathrm{d}}{\mathrm{d}t} e^{\lambda t} V = \\lambda e^{\lambda t}V = A e^{\lambda t} V
 $$
 This observation allows us ti solve (5.3.7) whenever the matrix $A$ has distinct real eigenvalues. In that case every solution will be a linear combination of the special solutions (5.3.13).
 To work out this, it is convenient to diagonalize.

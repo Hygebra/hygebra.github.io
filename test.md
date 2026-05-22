@@ -9,9 +9,6 @@
   <a href="#about">关于我</a>
 </div> -->
 
-<!-- 主体内容 -->
-<div class="main">
-
 <a id="home"></a>
 
 
@@ -65,6 +62,3 @@ $$
 - 邮箱: yourname@example.com  
 - GitHub: [yourusername](https://github.com/yourusername)  
 - 简介: 博士生 / 研究方向 / 技术博客
-
-</div>
-</div>

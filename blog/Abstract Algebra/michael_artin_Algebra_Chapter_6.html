@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Hygebra</title>
+    <meta name="description" content="Personal Blog">
+    <link rel="stylesheet" href="/style.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+<div class="topbar">
+  <button id="menu-toggle" class="menu-btn" title="Toggle Sidebar">☰</button>
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="/index.html">Homepage</a>
+    <a href="/blog/index.html">Blog</a>
+  </div>
+</div>
+
+<div class="sidebar" id="sidebar-placeholder">
+  <!-- Sidebar will be loaded from blog/sidebar.html -->
+</div>
+<script>
+(function(){
+  // Determine relative prefix from current page to the blog root
+  function getBlogPrefix(){
+    const parts = location.pathname.split('/').filter(Boolean);
+    const blogIndex = parts.lastIndexOf('blog');
+    if (blogIndex === -1) return '';
+    const after = parts.length - (blogIndex + 1); // number of segments after 'blog' (including the file)
+    const ups = Math.max(0, after - 1);
+    return ups > 0 ? '../'.repeat(ups) : '';
+  }
+
+  const prefix = getBlogPrefix();
+  const sidebarPath = prefix + 'sidebar.html';
+
+  fetch(sidebarPath).then(resp => resp.text()).then(html => {
+    try {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const ul = doc.querySelector('ul');
+
+      // Adjust relative links inside the sidebar so they work from subfolders
+      if (ul) {
+        ul.querySelectorAll('a').forEach(a => {
+          const href = a.getAttribute('href') || '';
+          if (!href.match(/^https?:\/\//i) && !href.startsWith('/') && !href.startsWith('../')) {
+            a.setAttribute('href', prefix + href);
+          }
+        });
+      }
+
+      const placeholder = document.getElementById('sidebar-placeholder');
+      if (placeholder) {
+        placeholder.innerHTML = '<h2>Navigation</h2>';
+        if (ul) placeholder.appendChild(ul);
+      }
+
+      // Patch topbar links so "Homepage" and "Blog" point to the right locations from subfolders
+      const homeLink = document.querySelector('.nav-links a[href="../index.html"]');
+      if (homeLink) homeLink.setAttribute('href', prefix + '../index.html');
+      const blogLink = document.querySelector('.nav-links a[href="index.html"]');
+      if (blogLink) blogLink.setAttribute('href', prefix + 'index.html');
+
+    } catch (e) {
+      console.error('Failed to parse sidebar fragment', e);
+    }
+  }).catch(err => {
+    console.error('Failed to load sidebar.html', err);
+  });
+})();
+</script>
+
+<div class="container">
+  <div class="main">
+    <h1
+    id="note-of-michael-artin-algebra-chapter-6-symmetry-to-complete">Note
+    of Michael Artin “Algebra” Chapter 6 “Symmetry” (to complete)</h1>
+    <h1 id="symmetry-of-plane-figures">6.1 SYMMETRY OF PLANE
+    FIGURES</h1>
+    <p>Bilateral, rotational, translational, glide symmetry, and their
+    combinations.</p>
+    <h1 id="isometries">6.2 ISOMETRIES</h1>
+    <h2 id="def.-distance-isometry">6.2.1 Def. (Distance, Isometry)</h2>
+    <p>The distance between points of <span
+    class="math inline">\(\mathbb{R}^n\)</span> is the length <span
+    class="math inline">\(|u-v|\)</span> of the vector <span
+    class="math inline">\(u-v\)</span>. An <strong>isometry</strong> of
+    <span class="math inline">\(n\)</span>-dimensional space <span
+    class="math inline">\(\mathbb{R}^n\)</span> is a distance-preserving
+    map <span class="math inline">\(f\)</span> from <span
+    class="math inline">\(\mathbb{R}^n\)</span> to itself, a map such
+    that, <span class="math inline">\(\forall u \in
+    \mathbb{R}^n\)</span>, <span class="math display">\[
+    |f(u) - f(v)|=|u-v|.
+    \]</span> An isometry will map a figure to a congruent figure.</p>
+    <h2 id="examples.">6.2.2. Examples.</h2>
+    <ul>
+    <li><strong>(a)</strong> Orthogonal liear operators are isometries.
+    <ul>
+    <li>Orthogonal operator preserve dot product <span
+    class="math inline">\(\rightarrow\)</span> distance.</li>
+    </ul></li>
+    <li><strong>(b)</strong> Translation <span
+    class="math inline">\(t_a(x) = x + a\)</span> by vector <span
+    class="math inline">\(a\)</span> is isometry.</li>
+    <li><strong>(c)</strong> The composition of isometries is an
+    isometry.</li>
+    </ul>
+    <h2 id="theo.">6.2.3 Theo.</h2>
+    <p>The following conditions on a map <span
+    class="math inline">\(\mathbb{R}^n \to \mathbb{R}^n\)</span> are
+    equivalent: - <strong>(a)</strong> <span
+    class="math inline">\(\varphi\)</span> is an isometry that fixes the
+    origin: <span class="math inline">\(\varphi(0)=0\)</span>, -
+    <strong>(b)</strong> <span class="math inline">\(\varphi\)</span>
+    preserves dot products: <span class="math inline">\((\varphi(v)\cdot
+    \varphi(w)) = (v \cdot w), \forall v,w\)</span>, -
+    <strong>(c)</strong> <span class="math inline">\(\varphi\)</span> is
+    an orthogonal linear operator.</p>
+    <h2 id="lemma.">6.2.4 Lemma.</h2>
+    <p><span class="math display">\[
+    x,y \in \mathbb{R}^n, (x \cdot x) = (y\cdot y) = (x\cdot y)
+    \rightarrow x=y
+    \]</span></p>
+    <h2 id="cor.">6.2.7 Cor.</h2>
+    <p>Every isometry <span class="math inline">\(f\)</span> of <span
+    class="math inline">\(\mathbb{R}^n\)</span> is the composition of an
+    orthogonal linear operator and a translation. If <span
+    class="math inline">\(f\)</span> is an isometry and if <span
+    class="math inline">\(f(0)=a\)</span>, then <span
+    class="math inline">\(f = t_a\varphi\)</span>, where <span
+    class="math inline">\(t_a\)</span> is a translation and <span
+    class="math inline">\(\phi\)</span> is an orthogoal linear operator,
+    and this expression for <span class="math inline">\(f\)</span> is
+    unique.</p>
+    <h2 id="cor.-1">6.2.9 Cor.</h2>
+    <p>The set of all isometries of <span
+    class="math inline">\(\mathbb{R}^n\)</span> forms a group that we
+    denote by <span class="math inline">\(M_n\)</span>, with composition
+    of functions as its law of composition.</p>
+    <p><strong>The Homomorphism</strong> <span
+    class="math inline">\(\pi: M_n \to O_n\)</span>, defined by dropping
+    the translation part of an isometry <span
+    class="math inline">\(f\)</span>.</p>
+    <h2 id="prop.">6.2.10 Prop.</h2>
+    <p>The map <span class="math inline">\(pi\)</span> is a surjective
+    homomorphism. Its kernel is the set <span
+    class="math inline">\(T=\{t_v\}\)</span> of translations, which is a
+    normal subgroup of <span class="math inline">\(M_n\)</span>.</p>
+    <h2 id="change-of-coordinates">6.2.11 Change of Coordinates</h2>
+    <p>Our change in coordinates will be given by some isometry, let’s
+    denote it by <span class="math inline">\(\eta\)</span>. Let the new
+    cooirdinate vectors of <span class="math inline">\(p\)</span> and
+    <span class="math inline">\(q\)</span> be <span
+    class="math inline">\(x&#39;\)</span> and <span
+    class="math inline">\(y&#39;\)</span>. The new formula <span
+    class="math inline">\(m&#39;\)</span> for <span
+    class="math inline">\(f\)</span> is the one such that <span
+    class="math inline">\(m&#39;(x&#39;)=y&#39;\)</span>. We also have
+    the formula <span class="math inline">\(\eta(x&#39;) = x\)</span>
+    analogous to the change of basis formula <span
+    class="math inline">\(PX&#39;=X\)</span>. <span
+    class="math display">\[
+    m&#39; = \eta^{-1} m\eta
+    \]</span></p>
+    <h2 id="cor.-2">6.2.12 Cor.</h2>
+    <p>The homomorphism <span class="math inline">\(\pi\)</span> does
+    not change when the origin is shifted by a translation.</p>
+    <h2 id="orientation">6.2.13 Orientation</h2>
+    <p>The determinant of an orthogonal operator <span
+    class="math inline">\(\varphi\)</span> on <span
+    class="math inline">\(\mathbb{R}^n\)</span> is <span
+    class="math inline">\(\pm 1\)</span>. There are 2 orientations,
+    <strong>orientation-preserving</strong> and
+    <strong>orientation-reversing</strong>. The map <span
+    class="math display">\[
+    \sigma: M_n \to \{ \pm 1\}
+    \]</span> is a group homomorphism.</p>
+    <h1 id="isometries-of-the-plane">6.3 ISOMETRIES OF THE PLANE</h1>
+  </div>
+</div>
+
+<script src="/js/sidebar-control.js"></script>
+</body>
+</html>

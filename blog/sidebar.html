@@ -1,48 +1,15 @@
-<div class="sidebar">
-  <!-- <h2>博客导航</h2> -->
-  <!-- <a href="#about">关于我</a> -->
+﻿<ul>
+  <li>
+    <a class="blog-nav-item" href="index.html">Blog Content</a>
+  </li>
+  <li>
+    <a class="toggle-item" data-toggle="abstract-algebra">Abstract Algebra <span class="toggle-btn">&#9660;</span></a>
+    <ul id="abstract-algebra" class="submenu expanded">
+      <li><a href="Abstract Algebra/abstract_algebra.html">abstract algebra</a></li>
+      <li><a href="Abstract Algebra/michael_artin_Algebra_Chapter_2.html">michael artin Algebra Chapter 2</a></li>
+      <li><a href="Abstract Algebra/michael_artin_Algebra_Chapter_5.html">michael artin Algebra Chapter 5</a></li>
+      <li><a href="Abstract Algebra/michael_artin_Algebra_Chapter_6.html">michael artin Algebra Chapter 6</a></li>
+    </ul>
+  </li>
+</ul>
 
-  <ul>
-    <!-- 一级链接 -->
-    <li><a href="index.html">Blog Content</a></li>
-
-    <!-- 一级链接 + 二级列表 -->
-    <!-- <li>
-      <a href="#">研究方向</a>
-      <ul>
-        <li><a href="ml.html">机器学习</a></li>
-        <li>
-          <a href="theory.html">理论计算机科学</a> -->
-          <!-- 三级列表 -->
-          <!-- <ul>
-            <li><a href="sat.html">SAT 求解</a></li>
-            <li><a href="graph.html">图论</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li> -->
-
-    <!-- 另一个一级链接 -->
-    <li>
-      <a href="abstract_algebra.html">Abstract Algebra</a>
-      <ul>
-        <li><a href="michael_artin_Algebra_Chapter_2.html">Note of Michael Artin "Algebra" Chapter 2 "Groups"</a></li>
-        <li><a href="michael_artin_Algebra_Chapter_5.html">Note of Michael Artin "Algebra" Chapter 5 "Applications of Linear Operators" (to complete)</a></li>
-        <li><a href="michael_artin_Algebra_Chapter_6.html">Note of Michael Artin "Algebra" Chapter 6 "Symmetry" (to complete)</a></li>
-      </ul>
-    </li>
-  </ul>
-
-  <script>
-  // 找到 sidebar 中所有链接
-  const sidebarLinks = document.querySelectorAll('.sidebar a');
-  const currentPage = window.location.pathname.split("/").pop(); // 获取当前页面文件名
-
-  sidebarLinks.forEach(link => {
-      const linkPage = link.getAttribute('href');
-      if (linkPage === currentPage) {
-          link.classList.add('active'); // 加上高亮类
-      }
-  });
-</script>
-</div>

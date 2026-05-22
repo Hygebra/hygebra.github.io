@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hygebra</title>
+    <meta name="description" content="Personal Homepage & Blog">
+    <link rel="stylesheet" href="style.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+<div class="topbar">
+  <button id="menu-toggle" class="menu-btn" title="Toggle Sidebar">☰</button>
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="/index.html">Homepage</a>
+    <a href="/blog/index.html">Blog</a>
+  </div>
+</div>
+
+<div class="sidebar">
+  <h2>Navigation</h2>
+  <a href="/index.html">Homepage</a>
+  <!-- <a href="blog/index.html">Blog</a> -->
+  <!-- <a href="test.html">Test</a> -->
+  <script>
+  // Find all links in sidebar
+  const sidebarLinks = document.querySelectorAll('.sidebar a');
+  const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+
+  sidebarLinks.forEach(link => {
+      const linkPage = link.getAttribute('href');
+      if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
+          link.classList.add('active'); // Add highlight class
+      }
+  });
+  </script>
+</div>
+
+<div class="container">
+  <div class="main">
+    <h1 id="build-system-documentation">Build System Documentation</h1>
+    <h2 id="project-structure">Project Structure</h2>
+    <p>New folder-based structure for blog projects:</p>
+    <pre><code>blog/
+├── index.md              (Blog index)
+├── blog1.md              (Top-level blog post)
+├── sidebar.html          (Auto-generated)
+├── topbar.html
+└── abstract_algebra/     (Project folder)
+    ├── abstract_algebra.md              (Home page for project)
+    ├── michael_artin_Algebra_Chapter_2.md
+    ├── michael_artin_Algebra_Chapter_5.md
+    └── michael_artin_Algebra_Chapter_6.md</code></pre>
+    <h2 id="build-script-features">Build Script Features</h2>
+    <p>The enhanced <code>build-web.ps1</code> script now:</p>
+    <ol type="1">
+    <li><strong>Auto-scans blog subdirectories</strong> - Detects all
+    project folders</li>
+    <li><strong>Identifies home pages</strong> - Files matching folder
+    name are treated as project home page</li>
+    <li><strong>Generates sidebar automatically</strong> - Creates
+    <code>blog/sidebar.html</code> with:
+    <ul>
+    <li>Top-level items (index.html, blog1.html, etc.)</li>
+    <li>Collapsible project sections with all content pages</li>
+    </ul></li>
+    <li><strong>Single-run execution</strong> - Run once to build all
+    HTML and regenerate sidebar</li>
+    </ol>
+    <h2 id="running-the-build">Running the Build</h2>
+    <h3 id="on-windows-recommended">On Windows (Recommended):</h3>
+    <pre><code>Double-click: build.bat</code></pre>
+    <h3 id="manual-powershell">Manual PowerShell:</h3>
+    <div class="sourceCode" id="cb3"><pre
+    class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>\build-web<span class="op">.</span><span class="fu">ps1</span> <span class="op">-</span>Force</span></code></pre></div>
+    <h3 id="with-configuration">With Configuration:</h3>
+    <div class="sourceCode" id="cb4"><pre
+    class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="op">.</span>\build-web<span class="op">.</span><span class="fu">ps1</span> <span class="op">-</span>ConfigFile build-config<span class="op">.</span><span class="fu">json</span> <span class="op">-</span>Force</span></code></pre></div>
+    <h2 id="adding-a-new-project">Adding a New Project</h2>
+    <ol type="1">
+    <li>Create a folder under <code>blog/</code>:
+    <code>blog/my_project/</code></li>
+    <li>Add markdown files:
+    <ul>
+    <li><code>my_project.md</code> (Home page)</li>
+    <li><code>my_project_chapter_1.md</code> (Content pages)</li>
+    <li><code>my_project_chapter_2.md</code></li>
+    </ul></li>
+    <li>Run the build script - sidebar updates automatically</li>
+    </ol>
+    <h2 id="sidebar-auto-generation">Sidebar Auto-generation</h2>
+    <p>The script generates <code>blog/sidebar.html</code> with: -
+    Collapsible sections for each project - Direct links to all content
+    pages - Project names extracted from folder names - Page names
+    extracted from file names (underscores → spaces)</p>
+    <h2 id="example-sidebar-output">Example Sidebar Output</h2>
+    <p>For the abstract_algebra project:</p>
+    <div class="sourceCode" id="cb5"><pre
+    class="sourceCode html"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;blog-nav-item&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;index.html&quot;</span><span class="dt">&gt;</span>📚 Blog Content<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;toggle-item&quot;</span><span class="ot"> data-toggle</span><span class="op">=</span><span class="st">&quot;abstract-algebra&quot;</span><span class="dt">&gt;</span>📖 Abstract Algebra <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;toggle-btn&quot;</span><span class="dt">&gt;</span>▼<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">ul</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;abstract-algebra&quot;</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;submenu expanded&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;abstract_algebra/abstract_algebra.html&quot;</span><span class="dt">&gt;</span>Abstract Algebra (Home)<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;abstract_algebra/michael_artin_Algebra_Chapter_2.html&quot;</span><span class="dt">&gt;</span>michael artin Algebra Chapter 2<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;abstract_algebra/michael_artin_Algebra_Chapter_5.html&quot;</span><span class="dt">&gt;</span>michael artin Algebra Chapter 5<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>      <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;abstract_algebra/michael_artin_Algebra_Chapter_6.html&quot;</span><span class="dt">&gt;</span>michael artin Algebra Chapter 6<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;blog-nav-item&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;blog1.html&quot;</span><span class="dt">&gt;</span>blog1<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span></code></pre></div>
+    <h2 id="changes-made">Changes Made</h2>
+    <ol type="1">
+    <li><strong>build-web.ps1</strong> - Enhanced scanning and sidebar
+    generation</li>
+    <li><strong>build.bat</strong> - New Windows batch wrapper for easy
+    execution</li>
+    <li><strong>blog/abstract_algebra/</strong> - New project folder
+    with content files</li>
+    </ol>
+  </div>
+</div>
+
+<script src="/js/sidebar-control.js"></script>
+</body>
+</html>

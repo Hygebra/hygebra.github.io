@@ -1,0 +1,6 @@
+{
+  "pandocPath": "D:\\miniconda3\\envs\\blog\\Library\\bin\\pandoc.exe",
+  "outputType": "html",
+  "mathjax": true,
+  "description": "构建配置文件 - 根据实际环境修改 pandocPath"
+}
