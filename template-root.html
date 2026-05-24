@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>$if(title)$$title$$else$Hygebra$endif$</title>
     <meta name="description" content="$if(description)$$description$$else$Personal Homepage & Blog$endif$">
+    <meta property="og:title" content="$if(title)$$title$$else$Hygebra$endif$">
+    <meta property="og:description" content="$if(description)$$description$$else$Personal Homepage & Blog$endif$">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/pic/github_avater.jpg">
     <link rel="stylesheet" href="style.css">
     $if(mathjax)$
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     $endif$
 </head>
-<body>
+<body class="home-page">
 <div class="topbar">
   <button id="menu-toggle" class="menu-btn" title="Toggle Sidebar">☰</button>
   <h2>Haishu Su(Hygebra)</h2>
@@ -19,25 +23,6 @@
     <a href="/index.html">Homepage</a>
     <a href="/blog/index.html">Blog</a>
   </div>
-</div>
-
-<div class="sidebar">
-  <h2>Navigation</h2>
-  <a href="/index.html">Homepage</a>
-  <!-- <a href="blog/index.html">Blog</a> -->
-  <!-- <a href="test.html">Test</a> -->
-  <script>
-  // Find all links in sidebar
-  const sidebarLinks = document.querySelectorAll('.sidebar a');
-  const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
-
-  sidebarLinks.forEach(link => {
-      const linkPage = link.getAttribute('href');
-      if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
-          link.classList.add('active'); // Add highlight class
-      }
-  });
-  </script>
 </div>
 
 <div class="container">

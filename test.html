@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hygebra</title>
     <meta name="description" content="Personal Homepage & Blog">
+    <meta property="og:title" content="Hygebra">
+    <meta property="og:description" content="Personal Homepage & Blog">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/pic/github_avater.jpg">
     <link rel="stylesheet" href="style.css">
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </head>
-<body>
+<body class="home-page">
 <div class="topbar">
   <button id="menu-toggle" class="menu-btn" title="Toggle Sidebar">☰</button>
   <h2>Haishu Su(Hygebra)</h2>
@@ -17,25 +19,6 @@
     <a href="/index.html">Homepage</a>
     <a href="/blog/index.html">Blog</a>
   </div>
-</div>
-
-<div class="sidebar">
-  <h2>Navigation</h2>
-  <a href="/index.html">Homepage</a>
-  <!-- <a href="blog/index.html">Blog</a> -->
-  <!-- <a href="test.html">Test</a> -->
-  <script>
-  // Find all links in sidebar
-  const sidebarLinks = document.querySelectorAll('.sidebar a');
-  const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
-
-  sidebarLinks.forEach(link => {
-      const linkPage = link.getAttribute('href');
-      if (linkPage === currentPage || (currentPage === '' && linkPage === 'index.html')) {
-          link.classList.add('active'); // Add highlight class
-      }
-  });
-  </script>
 </div>
 
 <div class="container">
@@ -52,11 +35,12 @@
     <p><a id="home"></a></p>
     <h1 id="欢迎">欢迎</h1>
     <p>这里是我的个人主页，展示我的研究、博客和论文。</p>
-    <p>行内公式示例：<span class="math inline">\(E=mc^2\)</span></p>
+    <p>行内公式示例：<span
+    class="math inline"><em>E</em> = <em>m</em><em>c</em><sup>2</sup></span></p>
     <p>行间公式示例：</p>
-    <p><span class="math display">\[
+    <p><span class="math display">$$
     \int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
-    \]</span></p>
+    $$</span></p>
     <hr />
     <p><a id="blog"></a> # 博客</p>
     <p>下面是博客文章示例：</p>

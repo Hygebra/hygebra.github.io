@@ -254,7 +254,9 @@ for ($i = 0; $i -lt $mdFilesToProcess.Count; $i++) {
             "--template=$templateToUse"
         )
 
-        if ($config["mathjax"]) {
+        $useMathJax = $config["mathjax"] -and ($mdFile.FullName -like "*\blog\*")
+
+        if ($useMathJax) {
             $args += "--mathjax"
         }
 

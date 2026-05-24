@@ -736,3 +736,75 @@ header#title-block-header {
         padding: 8px 10px;
     }
 }
+
+/* ===== Homepage ===== */
+.home-page .menu-btn {
+    display: none;
+}
+
+.home-page .main {
+    max-width: 980px;
+    margin: 110px auto 48px;
+    padding: 56px 64px;
+}
+
+.home-page .main h1:first-of-type {
+    display: block;
+    margin: 0 0 12px 0;
+    border-bottom: none;
+    padding-bottom: 0;
+    font-size: 42px;
+}
+
+.home-page .main h2 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+    font-size: 24px;
+}
+
+.home-page .main > p:first-of-type {
+    color: var(--text-light);
+    font-size: 18px;
+    max-width: 680px;
+}
+
+.home-page .main figure {
+    float: right;
+    margin: 0 0 28px 40px;
+}
+
+.home-page .main figure figcaption {
+    display: none;
+}
+
+.home-page .main img.profile-photo {
+    display: block;
+    width: 168px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    margin: 0;
+    border-radius: 50%;
+    border: 4px solid white;
+}
+
+@media (max-width: 768px) {
+    .home-page .main {
+        margin: 82px 20px 28px;
+        max-width: none;
+        padding: 30px 24px;
+    }
+
+    .home-page .main h1:first-of-type {
+        font-size: 30px;
+    }
+
+    .home-page .main figure {
+        float: none;
+        display: block;
+        margin: 0 0 22px 0;
+    }
+
+    .home-page .main img.profile-photo {
+        width: 128px;
+    }
+}

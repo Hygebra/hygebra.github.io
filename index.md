@@ -1,21 +1,34 @@
 ---
 title: Haishu Su Homepage
+description: Haishu Su (Hygebra), undergraduate student at Beihang University interested in machine learning, data mining, and abductive learning.
 ---
 
 # Haishu Su (Hygebra)
 
-B.Sc. student, [Shenyuan Honors College](https://hc.buaa.edu.cn/xygk/gdlgxy.htm), [Beihang University](https://www.buaa.edu.cn/), Beijing 100191, China
+![Haishu Su](pic/github_avater.jpg){.profile-photo}
 
-Email: hygebra2003 [at] 163.com
+B.Sc. student at [Shenyuan Honors College](https://hc.buaa.edu.cn/xygk/gdlgxy.htm), [Beihang University](https://www.buaa.edu.cn/), Beijing, China.
 
-# Biography
-Currently I a senior undergraduate student of [Shenyuan Honors College](https://hc.buaa.edu.cn/xygk/gdlgxy.htm), [Beihang University](https://www.buaa.edu.cn/). 
+Email: hygebra2003 [at] 163.com  
+GitHub: [Hygebra](https://github.com/Hygebra)
 
-# Research Interest
-My current research interests mainly include topic in Machine Learning and Data Mining.
+## About
 
-More Specifically, I mainly work on [Abductive Learning(ABL)](https://www.lamda.nju.edu.cn/publication/chap_ABL.pdf).
+I am a senior undergraduate student at Shenyuan Honors College, Beihang University. My current interests are centered on machine learning, data mining, and neuro-symbolic learning methods that combine statistical models with structured reasoning.
 
-# Experience
+## Research Interests
 
-I an currently a maintainer of [ABLkit](https://github.com/AbductiveLearning/ABLkit), an efficient Python toolkit for [Abductive Learning(ABL)](https://www.lamda.nju.edu.cn/publication/chap_ABL.pdf). For more information, please refer to [ABLkit doc](https://ablkit.readthedocs.io/en/latest/index.html).
+- Machine Learning and Data Mining
+- [Abductive Learning (ABL)](https://www.lamda.nju.edu.cn/publication/chap_ABL.pdf)
+- Neuro-symbolic learning and reasoning
+
+## Projects
+
+I am currently a maintainer of [ABLkit](https://github.com/AbductiveLearning/ABLkit), an efficient Python toolkit for Abductive Learning. For usage and examples, please refer to the [ABLkit documentation](https://ablkit.readthedocs.io/en/latest/index.html).
+
+## Blog and Notes
+
+I use the blog to collect course notes, mathematical reading notes, and technical explorations.
+
+- [Recent blog posts](blog/index.html)
+- [Abstract Algebra notes](blog/Abstract%20Algebra/abstract_algebra.html)
