@@ -26,7 +26,7 @@ if ([string]::IsNullOrWhiteSpace($scriptPath)) {
 }
 
 $config = @{
-    "pandocExe"    = "D:\miniconda3\envs\blog\Library\bin\pandoc.exe"
+    "pandocExe"    = (Get-Command pandoc).Source
     "outputType"   = $OutputType
     "mathjax"      = $true
     "templateFile" = Join-Path $scriptPath "template-root.html"

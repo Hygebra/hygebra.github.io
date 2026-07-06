@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Hygebra</title>
+    <meta name="description" content="Personal Blog">
+    <link rel="stylesheet" href="/style.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+<div class="topbar">
+  <button id="menu-toggle" class="menu-btn" title="Toggle Sidebar">☰</button>
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="/index.html">Homepage</a>
+    <a href="/blog/index.html">Blog</a>
+  </div>
+</div>
+
+<div class="sidebar" id="sidebar-placeholder">
+  <!-- Sidebar will be loaded from blog/sidebar.html -->
+</div>
+<script>
+(function(){
+  // Determine relative prefix from current page to the blog root
+  function getBlogPrefix(){
+    const parts = location.pathname.split('/').filter(Boolean);
+    const blogIndex = parts.lastIndexOf('blog');
+    if (blogIndex === -1) return '';
+    const after = parts.length - (blogIndex + 1); // number of segments after 'blog' (including the file)
+    const ups = Math.max(0, after - 1);
+    return ups > 0 ? '../'.repeat(ups) : '';
+  }
+
+  const prefix = getBlogPrefix();
+  const sidebarPath = prefix + 'sidebar.html';
+
+  fetch(sidebarPath).then(resp => resp.text()).then(html => {
+    try {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const ul = doc.querySelector('ul');
+
+      // Adjust relative links inside the sidebar so they work from subfolders
+      if (ul) {
+        ul.querySelectorAll('a').forEach(a => {
+          const href = a.getAttribute('href') || '';
+          if (!href.match(/^https?:\/\//i) && !href.startsWith('/') && !href.startsWith('../')) {
+            a.setAttribute('href', prefix + href);
+          }
+        });
+      }
+
+      const placeholder = document.getElementById('sidebar-placeholder');
+      if (placeholder) {
+        placeholder.innerHTML = '<h2>Navigation</h2>';
+        if (ul) placeholder.appendChild(ul);
+      }
+
+      // Patch topbar links so "Homepage" and "Blog" point to the right locations from subfolders
+      const homeLink = document.querySelector('.nav-links a[href="../index.html"]');
+      if (homeLink) homeLink.setAttribute('href', prefix + '../index.html');
+      const blogLink = document.querySelector('.nav-links a[href="index.html"]');
+      if (blogLink) blogLink.setAttribute('href', prefix + 'index.html');
+
+    } catch (e) {
+      console.error('Failed to parse sidebar fragment', e);
+    }
+  }).catch(err => {
+    console.error('Failed to load sidebar.html', err);
+  });
+})();
+</script>
+
+<div class="container">
+  <div class="main">
+    <h1 id="abstruct">Abstruct</h1>
+    <p>(Affine/Convex/Convex Cone) <span
+    class="math inline">\(\times\)</span> (set/combination/hull)</p>
+    <p>cone, convex cone</p>
+    <h1 id="affine-setaffine-combinationaffine-hull">Affine set/Affine
+    combination/Affine hull</h1>
+    <h2 id="仿射集">仿射集</h2>
+    <p>C is an affine set, iff <span class="math display">\[
+    \forall x_1, \cdots, x_k \in C, \forall \theta_1, \cdots, \theta_k
+    \in \mathbb{R}, \sum_{i=1}^{k} c_i\theta_i \in C, s.t.
+    \sum_{i=1}^k\theta_i = 1
+    \]</span> ## 仿射组合 The affine combination of <span
+    class="math inline">\(x_1, \cdots, x_k\)</span> is: <span
+    class="math display">\[
+    \sum_{i=1}^k \theta_ix_i| \sum_{i=1}^k\theta_i = 1, \theta_i \in
+    \mathbb{R}\forall i
+    \]</span> ## 仿射包 The affine hull of <span
+    class="math inline">\(C\)</span> is denoted as <strong>conv</strong>
+    <span class="math inline">\(C\)</span>, which is defined as: <span
+    class="math display">\[
+    \mathrm{aff} C = \left\{\sum_{i=1}^k \theta_ix_i|
+    \sum_{i=1}^k\theta_i = 1, \theta_i \in \mathbb{R},x_i\in C \forall
+    i\right\}
+    \]</span> )</p>
+    <h1 id="convex-setconvex-combinationconvex-hull">Convex set/Convex
+    combination/Convex hull</h1>
+    <h2 id="凸集">凸集</h2>
+    <p>C is a convex set, iff <span class="math display">\[
+    \forall x_1, \cdots, x_k \in C, \forall \theta_1, \cdots, \theta_k
+    \in \mathbb{R}, \sum_{i=1}^{k} c_i\theta_i \in C, s.t.
+    \sum_{i=1}^k\theta_i = 1, \theta_i \in [0,1] \forall i
+    \]</span> ## 凸组合 The convex combination of <span
+    class="math inline">\(x_1, \cdots, x_k\)</span> is: <span
+    class="math display">\[
+    \sum_{i=1}^k \theta_ix_i| \sum_{i=1}^k\theta_i = 1, \theta_i \in
+    [0,1]\forall i
+    \]</span> ## 凸包 The convex hull of <span
+    class="math inline">\(C\)</span> is denoted as <strong>conv</strong>
+    <span class="math inline">\(C\)</span>, which is defined as: <span
+    class="math display">\[
+    \mathrm{conv} C = \left\{\sum_{i=1}^k \theta_ix_i|
+    \sum_{i=1}^k\theta_i = 1, \theta_i \in [0,1],x_i\in C \forall
+    i\right\}
+    \]</span> )</p>
+    <h1 id="conenonnegative-homogeneous">Cone(Nonnegative
+    homogeneous)</h1>
+    <p>C is a cone, iff</p>
+    <p><span class="math display">\[
+    \forall x\in C, \theta x \in C, \forall \theta \geq 0
+    \]</span></p>
+    <h1
+    id="convex-coneconic-combinationnonnegative-linear-combinationconic-hull">Convex
+    cone/Conic combination(Nonnegative linear combination)/Conic
+    hull</h1>
+    <h2 id="凸锥">凸锥</h2>
+    <p>C is a convex cone, iff <span class="math display">\[
+    \forall x_1, \cdots, x_k \in C, \forall \theta_1, \cdots, \theta_k
+    \in \mathbb{R}, \sum_{i=1}^{k} c_i\theta_i \in C, s.t. \theta_i \geq
+    0 \forall i
+    \]</span> ## 凸锥组合 The conic combination of <span
+    class="math inline">\(x_1, \cdots, x_k\)</span> is: <span
+    class="math display">\[
+    \sum_{i=1}^k \theta_ix_i| \theta_i \geq 0 \forall i
+    \]</span> ## 凸锥包 The conic hull of <span
+    class="math inline">\(C\)</span> is: <span class="math display">\[
+    \left\{\sum_{i=1}^k \theta_ix_i| \theta_i \geq 0,x_i\in C \forall
+    i\right\}
+    \]</span></p>
+    <h1 id="tips">Tips</h1>
+    <p>只有一个点的集合是仿射集、凸集，只有当这个点在原点时是凸锥。
+    空集是仿射集、凸集和凸锥。</p>
+  </div>
+</div>
+
+<script src="/js/sidebar-control.js"></script>
+</body>
+</html>
