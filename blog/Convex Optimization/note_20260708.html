@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Hygebra</title>
+    <meta name="description" content="Personal Blog">
+    <link rel="stylesheet" href="/style.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+<body>
+<div class="topbar">
+  <button id="menu-toggle" class="menu-btn" title="Toggle Sidebar">☰</button>
+  <h2>Haishu Su(Hygebra)</h2>
+  <div class="nav-links">
+    <a href="/index.html">Homepage</a>
+    <a href="/blog/index.html">Blog</a>
+  </div>
+</div>
+
+<div class="sidebar" id="sidebar-placeholder">
+  <!-- Sidebar will be loaded from blog/sidebar.html -->
+</div>
+<script>
+(function(){
+  // Determine relative prefix from current page to the blog root
+  function getBlogPrefix(){
+    const parts = location.pathname.split('/').filter(Boolean);
+    const blogIndex = parts.lastIndexOf('blog');
+    if (blogIndex === -1) return '';
+    const after = parts.length - (blogIndex + 1); // number of segments after 'blog' (including the file)
+    const ups = Math.max(0, after - 1);
+    return ups > 0 ? '../'.repeat(ups) : '';
+  }
+
+  const prefix = getBlogPrefix();
+  const sidebarPath = prefix + 'sidebar.html';
+
+  fetch(sidebarPath).then(resp => resp.text()).then(html => {
+    try {
+      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const ul = doc.querySelector('ul');
+
+      // Adjust relative links inside the sidebar so they work from subfolders
+      if (ul) {
+        ul.querySelectorAll('a').forEach(a => {
+          const href = a.getAttribute('href') || '';
+          if (!href.match(/^https?:\/\//i) && !href.startsWith('/') && !href.startsWith('../')) {
+            a.setAttribute('href', prefix + href);
+          }
+        });
+      }
+
+      const placeholder = document.getElementById('sidebar-placeholder');
+      if (placeholder) {
+        placeholder.innerHTML = '<h2>Navigation</h2>';
+        if (ul) placeholder.appendChild(ul);
+      }
+
+      // Patch topbar links so "Homepage" and "Blog" point to the right locations from subfolders
+      const homeLink = document.querySelector('.nav-links a[href="../index.html"]');
+      if (homeLink) homeLink.setAttribute('href', prefix + '../index.html');
+      const blogLink = document.querySelector('.nav-links a[href="index.html"]');
+      if (blogLink) blogLink.setAttribute('href', prefix + 'index.html');
+
+    } catch (e) {
+      console.error('Failed to parse sidebar fragment', e);
+    }
+  }).catch(err => {
+    console.error('Failed to load sidebar.html', err);
+  });
+})();
+</script>
+
+<div class="container">
+  <div class="main">
+    <h1 id="abstruct">Abstruct</h1>
+    <p>The first part is some important convex sets.</p>
+    <p>The second part is some operations that preserve convexity.</p>
+    <h1 id="hyperplane">Hyperplane</h1>
+    <p>A hyperplane is a set of the form <span class="math display">\[
+    \left\{{x|a^Tx=b}\right\}, a\in \mathbb{R}^n, a\neq 0, b \in
+    \mathbb{R}
+    \]</span></p>
+    <h1 id="halfspace">Halfspace</h1>
+    <p>A hyperplane divides a space into two halfspaces. A half space is
+    a set of the form <span class="math display">\[
+    \left\{{x|a^Tx\leq b}\right\}, a\in \mathbb{R}^n, a\neq 0, b \in
+    \mathbb{R}
+    \]</span> A halfspace if convex but not affine.</p>
+    <h1 id="euclidean-ball-and-ellipsoids">Euclidean ball and
+    ellipsoids</h1>
+    <h2 id="ball">Ball</h2>
+    <p>A ball in <span class="math inline">\(\mathbb{R}^n\)</span> is a
+    set of the form <span class="math display">\[
+    B(x_c, r) = \left\{x| \parallel x - x_c\parallel \leq r \right\}
+    \]</span> A ball is a convex set. <strong>The proof needs triangular
+    inequality.</strong> ## Ellipsoid Ellipsoid is also a convex set of
+    the form <span class="math display">\[
+    \left\{x| (x-x_c)^TP^{-1}(x-x_c)\leq 1 \right\}, P=P^T\succ 0
+    \]</span> The lengths of the semi-axes of <span
+    class="math inline">\(P\)</span> are given by <span
+    class="math inline">\(\sqrt{\lambda_i}\)</span>, where <span
+    class="math inline">\(\lambda_i\)</span> are the eigenvalues of
+    <span class="math inline">\(P\)</span>. A ball is an ellipsoid with
+    <span class="math inline">\(P = r^2I\)</span>.</p>
+    <h1 id="polyhedra">Polyhedra</h1>
+    <p>A polyhedron is defined as the solution set of a finite number of
+    linear equalities and inequalities: <span class="math display">\[
+    P = \left\{x|a_i^Tx\leq b_i, i = 1, \cdots, m, c^T_jx=d_j,j=1,
+    \cdots, p\right\}
+    \]</span></p>
+    <h1 id="simplex">Simplex</h1>
+    <p>Simplexes are another important family of polyhedra. Suppose the
+    <span class="math inline">\(k + 1\)</span> points <span
+    class="math inline">\(v_0,\cdots, v_k \in \mathbb{R}^n\)</span> are
+    affinely independent, which means <span
+    class="math inline">\(v_1-v_0,\cdots,v_k-v_0\)</span> are linearly
+    independent. The simplex determined by them is given by <span
+    class="math display">\[
+    C = \text{conv} \left\{v_0, v_1, \cdots, v_k\right\} = \left\{x|
+    x=\theta^Tv, 1^T\theta=1, \theta \succeq 0\right\}\
+    \]</span></p>
+    <h2 id="theo.-a-simplex-is-a-polyhedron.">Theo. A simplex is a
+    polyhedron.</h2>
+    <p>Proof. For a simplex <span class="math inline">\(S\)</span>,
+    there exist <span class="math inline">\(k+1\)</span> points <span
+    class="math inline">\(v_0,\cdots, v_k \in \mathbb{R}^n\)</span> are
+    affinely independent.</p>
+    <p><span class="math inline">\(v_1-v_0,\cdots, v_k-v_0 \in
+    \mathbb{R}^n\)</span> is denoted by <span
+    class="math inline">\(B\)</span>, and <span
+    class="math inline">\(\theta_1,\cdots, \theta_k\)</span> is denoted
+    by <span class="math inline">\(A\)</span>.</p>
+    <p>Thus, <span class="math inline">\(\forall x \in S\)</span>, we
+    have <span class="math display">\[
+    \begin{split}
+    x &amp;= \theta^Tv \\
+    &amp;= v_0 + \theta_1(v_1 - v_0) + \cdots + \theta_k(v_k - v_0) \\
+    &amp;= v_0 + BA
+    \end{split}
+    \]</span> For column linear independent matrix <span
+    class="math inline">\(B_{n\times k}\)</span>, there exist a
+    inversive matrix <span class="math inline">\(P_{n\times n}\)</span>
+    such that <span class="math inline">\(PB = \begin{bmatrix}
+    I_k \\
+    0\end{bmatrix}\)</span>. Therefore, we have <span
+    class="math display">\[
+    \begin{split}
+    Px &amp;= Pv_0 + PBA\\
+    &amp;= Pv_0 + \begin{bmatrix}
+    A\\
+    0
+    \end{bmatrix}
+    \end{split}
+    \]</span> Therefore, <span class="math display">\[
+    P_1x=P_1v_0 + A\\
+    P_2x=P_2v_0
+    \]</span> The <span class="math inline">\(\theta_i(i=1, \cdots,
+    k)\)</span> vary, we can vary all the values satisfy <span
+    class="math inline">\(A \geq 0, 1^TA \leq 1\)</span>. So we finally
+    get <span class="math display">\[
+    P_1x\geq P_1v_0\\
+    1^TP_1x \leq 1^TP_1v_0 + 1\\
+    P_2x = P_2v_0
+    \]</span> And the reasoning is bidirectional.</p>
+  </div>
+</div>
+
+<script src="/js/sidebar-control.js"></script>
+</body>
+</html>
