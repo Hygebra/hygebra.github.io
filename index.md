@@ -1,24 +1,22 @@
 ---
-title: Haishu Su Homepage
-description: Haishu Su (Hygebra), undergraduate student at Beihang University interested in machine learning, data mining, and abductive learning.
+title: Yang Hang Homepage
 ---
 
-# Haishu Su (Hygebra)
+# Yang Hang (Hygebra)
 
-![Haishu Su](pic/github_avater.jpg){.profile-photo}
+![Yang Hang](pic/github_avater.jpg){.profile-photo}
 
-B.Sc. student at [Shenyuan Honors College](https://hc.buaa.edu.cn/xygk/gdlgxy.htm), [Beihang University](https://www.buaa.edu.cn/), Beijing, China.
+Post graduate student at [School of Artificial Intelligence](https://ai.nju.edu.cn/), [Nanjing University](https://www.nju.edu.cn/), Nanjing 210023, China.
 
-Email: hygebra2003 [at] 163.com  
+Email: hygebra2003 [at] 163.com | hangy [at] lamda.nju.edu.cn
 GitHub: [Hygebra](https://github.com/Hygebra)
 
 ## About
 
-I am a senior undergraduate student at Shenyuan Honors College, Beihang University. My current interests are centered on machine learning, data mining, and neuro-symbolic learning methods that combine statistical models with structured reasoning.
+My current interests are centered on machine learning, data mining, and neuro-symbolic learning methods that combine statistical models with structured reasoning.
 
 ## Research Interests
 
-- Machine Learning and Data Mining
 - [Abductive Learning (ABL)](https://www.lamda.nju.edu.cn/publication/chap_ABL.pdf)
 - Neuro-symbolic learning and reasoning
 
