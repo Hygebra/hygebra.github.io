@@ -6,9 +6,10 @@ title: Yang Hang Homepage
 
 ![Yang Hang](pic/github_avater.jpg){.profile-photo}
 
-Post graduate student at [School of Artificial Intelligence](https://ai.nju.edu.cn/), [Nanjing University](https://www.nju.edu.cn/), Nanjing 210023, China.
+Postgraduate student at [School of Artificial Intelligence](https://ai.nju.edu.cn/), [Nanjing University](https://www.nju.edu.cn/), Nanjing 210023, China.
 
 Email: hygebra2003 [at] 163.com | hangy [at] lamda.nju.edu.cn
+
 GitHub: [Hygebra](https://github.com/Hygebra)
 
 ## About
@@ -24,9 +25,6 @@ My current interests are centered on machine learning, data mining, and neuro-sy
 
 I am currently a maintainer of [ABLkit](https://github.com/AbductiveLearning/ABLkit), an efficient Python toolkit for Abductive Learning. For usage and examples, please refer to the [ABLkit documentation](https://ablkit.readthedocs.io/en/latest/index.html).
 
-## Blog and Notes
+## Hobby
 
-I use the blog to collect course notes, mathematical reading notes, and technical explorations.
-
-- [Recent blog posts](blog/index.html)
-- [Abstract Algebra notes](blog/Abstract%20Algebra/abstract_algebra.html)
+SATB chorus, traveling, long racing.
