@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog - Hygebra</title>
-    <meta name="description" content="Personal Blog">
+    <title>$if(title)$$title$$else$Blog - Hygebra$endif$</title>
+    <meta name="description" content="$if(description)$$description$$else$Personal Blog$endif$">
     <link rel="stylesheet" href="/style.css">
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    </head>
+    $if(mathjax)$
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    $endif$
+</head>
 <body>
 <div class="topbar">
   <button id="menu-toggle" class="menu-btn" title="Toggle Sidebar">☰</button>
@@ -15,7 +17,7 @@
   <div class="nav-links">
     <a href="/index.html">Homepage</a>
     <a href="/blog/index.html">Math</a>
-    <!-- <a href="/music/index.html">Music</a> -->
+    <a href="/music/index.html">Music</a>
   </div>
 </div>
 
@@ -75,9 +77,7 @@
 
 <div class="container">
   <div class="main">
-    <h1 id="convex-optimization">Convex Optimization</h1>
-    <p>2026/7/6 Basic Concepts - <a href="note_20260706.html">Note
-    20260706</a></p>
+    $body$
   </div>
 </div>
 
