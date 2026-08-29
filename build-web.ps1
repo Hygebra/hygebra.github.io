@@ -25,6 +25,16 @@ if ([string]::IsNullOrWhiteSpace($scriptPath)) {
     }
 }
 
+function Get-RelativeToRoot {
+    param([string]$Path)
+    $prefix = $scriptPath.TrimEnd('\') + '\'
+    if ($Path -and $Path.StartsWith($prefix, [System.StringComparison]::OrdinalIgnoreCase)) {
+        return $Path.Substring($prefix.Length).Replace('\', '/')
+    }
+    return $Path
+}
+
+
 $config = @{
     "pandocExe"    = (Get-Command pandoc).Source
     "outputType"   = $OutputType
@@ -70,13 +80,10 @@ if (!(Test-Path $config["pandocExe"])) {
 Write-Host "Pandoc path: $($config["pandocExe"])" -ForegroundColor Green
 
 # ========================================
-# 2. Detect directories
+# 2. Detect directories & load top-level dirs
 # ========================================
 
-$currentDir = (Get-Location).Path
-
 $isRootDir = $false
-$isBlogDir = $false
 
 # Root dir
 if ((Test-Path "index.html") -or (Test-Path "sidebar.html")) {
@@ -87,20 +94,56 @@ if ((Test-Path "index.html") -or (Test-Path "sidebar.html")) {
     Write-Host "Root directory detected." -ForegroundColor Cyan
 }
 
-# Blog dir
-if ((Test-Path "blog\index.html") -or (Test-Path "blog\sidebar.html")) {
+# Load top-level dirs (one folder name per line)
+$topDirs = @()
+$topDirListFile = Join-Path $scriptPath "top_dir_list.txt"
 
-    $isBlogDir = $true
-    $config["templateFile"] = Join-Path $scriptPath "template-blog.html"
+if (Test-Path $topDirListFile) {
 
-    Write-Host "Blog directory detected." -ForegroundColor Cyan
+    $topDirs = [System.IO.File]::ReadAllLines($topDirListFile, [System.Text.Encoding]::UTF8) |
+        ForEach-Object { $_.Trim() } |
+        Where-Object { $_ -and -not $_.StartsWith("#") } |
+        Select-Object -Unique
+
+    Write-Host "Loaded top dirs from $(Get-RelativeToRoot $topDirListFile)" -ForegroundColor Cyan
+
+} else {
+
+    Write-Host "Warning: $topDirListFile not found." -ForegroundColor Yellow
 }
 
-# Fallback
-if (!$isRootDir -and !$isBlogDir) {
+# Fallback to blog if nothing was loaded (preserve legacy behavior)
+if ($topDirs.Count -eq 0) {
 
-    Write-Host "Warning: Cannot detect directory type. Using default template." -ForegroundColor Yellow
+    $topDirs = @("blog")
+    Write-Host "Falling back to default top dir: blog" -ForegroundColor Yellow
 }
+
+# Validate dirs and resolve a template for each one
+$topDirTemplates = @{}
+
+foreach ($topDir in $topDirs) {
+
+    $topDirPath = Join-Path $scriptPath $topDir
+
+    if (-not (Test-Path $topDirPath -PathType Container)) {
+        Write-Host "Warning: top dir '$topDir' not found. Skipping." -ForegroundColor Yellow
+        continue
+    }
+
+    if (Test-Path (Join-Path $scriptPath "template-$topDir.html")) {
+        $topDirTemplates[$topDir] = Join-Path $scriptPath "template-$topDir.html"
+    } elseif (Test-Path (Join-Path $scriptPath "template-blog.html")) {
+        $topDirTemplates[$topDir] = Join-Path $scriptPath "template-blog.html"
+    } else {
+        $topDirTemplates[$topDir] = $config["templateFile"]
+    }
+
+    Write-Host "Top dir: $topDir -> template: $(Get-RelativeToRoot $topDirTemplates[$topDir])" -ForegroundColor Cyan
+}
+
+# Keep only the dirs that exist
+$topDirs = @($topDirs | Where-Object { $topDirTemplates.ContainsKey($_) })
 
 # ========================================
 # 3. Scan markdown files
@@ -111,7 +154,8 @@ Write-Host "Scanning markdown files..." -ForegroundColor Cyan
 
 $allMdFiles = @()
 $mdFilesToProcess = @()
-$projectStructure = @{}
+$projectStructures = @{}
+$fileTopDir = @{}
 
 # Current dir markdown files
 $localMds = Get-ChildItem -Path . -Filter "*.md" -File -ErrorAction SilentlyContinue
@@ -125,15 +169,18 @@ foreach ($md in $localMds) {
     $allMdFiles += $md
 }
 
-# Blog dir markdown files and project structure
-if ($isRootDir -and (Test-Path "blog")) {
+# Top-level dir markdown files and project structure
+foreach ($topDirName in $topDirs) {
 
-    # Scan subdirectories in blog/
-    $blogDirs = Get-ChildItem -Path "blog" -Directory -ErrorAction SilentlyContinue
+    $topDirPath = Join-Path $scriptPath $topDirName
+    $projectStructures[$topDirName] = @{}
 
-    foreach ($dir in $blogDirs) {
+    # Scan subdirectories in <topDir>/
+    $subDirs = Get-ChildItem -Path $topDirPath -Directory -ErrorAction SilentlyContinue
+
+    foreach ($dir in $subDirs) {
         $dirName = $dir.Name
-        $projectStructure[$dirName] = @{
+        $projectStructures[$topDirName][$dirName] = @{
             "path" = $dir.FullName
             "files" = @()
         }
@@ -146,26 +193,28 @@ if ($isRootDir -and (Test-Path "blog")) {
                 continue
             }
 
-            $projectStructure[$dirName]["files"] += @{
+            $projectStructures[$topDirName][$dirName]["files"] += @{
                 "name" = $md.Name
                 "baseName" = $md.BaseName
                 "path" = $md.FullName
                 "isHomePage" = ($md.BaseName -eq $dirName)
             }
 
+            $fileTopDir[$md.FullName] = $topDirName
             $allMdFiles += $md
         }
     }
 
-    # Also scan top-level blog md files (backward compatibility)
-    $blogMds = Get-ChildItem -Path "blog" -Filter "*.md" -File -ErrorAction SilentlyContinue
+    # Also scan top-level md files (backward compatibility)
+    $topMds = Get-ChildItem -Path $topDirPath -Filter "*.md" -File -ErrorAction SilentlyContinue
 
-    foreach ($md in $blogMds) {
+    foreach ($md in $topMds) {
 
         if ($md.Name -eq "README.md") {
             continue
         }
 
+        $fileTopDir[$md.FullName] = $topDirName
         $allMdFiles += $md
     }
 }
@@ -200,7 +249,7 @@ foreach ($mdFile in $allMdFiles) {
 
     } else {
 
-        Write-Host "Skip: $($mdFile.FullName)" -ForegroundColor Gray
+        Write-Host "Skip: $(Get-RelativeToRoot $mdFile.FullName)" -ForegroundColor Gray
     }
 }
 
@@ -215,7 +264,7 @@ Write-Host ""
 Write-Host "Files to process: $($mdFilesToProcess.Count)" -ForegroundColor Cyan
 
 foreach ($file in $mdFilesToProcess) {
-    Write-Host "  $file" -ForegroundColor Cyan
+    Write-Host "  $(Get-RelativeToRoot $file.FullName)" -ForegroundColor Cyan
 }
 
 # ========================================
@@ -235,16 +284,15 @@ for ($i = 0; $i -lt $mdFilesToProcess.Count; $i++) {
     $outFile = $mdFile.FullName -replace '\.md$', ".html"
     $index = $i + 1
 
-    Write-Host "[$index/$($mdFilesToProcess.Count)] $($mdFile.Name)" -ForegroundColor White -NoNewline
+    Write-Host "[$index/$($mdFilesToProcess.Count)] $(Get-RelativeToRoot $mdFile.FullName)" -ForegroundColor White -NoNewline
 
     try {
 
         # Determine template based on file location
         $templateToUse = $config["templateFile"]
-        if ($mdFile.FullName -like "*\blog\*") {
-            $templateToUse = Join-Path $scriptPath "template-blog.html"
-        } else {
-            $templateToUse = Join-Path $scriptPath "template-root.html"
+        $mdTopDir = $fileTopDir[$mdFile.FullName]
+        if ($mdTopDir -and $topDirTemplates.ContainsKey($mdTopDir)) {
+            $templateToUse = $topDirTemplates[$mdTopDir]
         }
 
         $args = @(
@@ -254,7 +302,7 @@ for ($i = 0; $i -lt $mdFilesToProcess.Count; $i++) {
             "--template=$templateToUse"
         )
 
-        $useMathJax = $config["mathjax"] -and ($mdFile.FullName -like "*\blog\*")
+        $useMathJax = $config["mathjax"] -and $mdTopDir
 
         if ($useMathJax) {
             $args += "--mathjax"
@@ -281,17 +329,24 @@ for ($i = 0; $i -lt $mdFilesToProcess.Count; $i++) {
 }
 
 # ========================================
-# 5. Generate sidebar.html
+# 5. Generate sidebar.html for each top-level dir
 # ========================================
 
-Write-Host ""
-Write-Host "Generating sidebar.html..." -ForegroundColor Cyan
+foreach ($topDirName in $topDirs) {
 
-$sidebarContent = @()
-$sidebarContent += '<ul>'
-$sidebarContent += '  <li>'
-$sidebarContent += '    <a class="blog-nav-item" href="index.html">Blog Content</a>'
-$sidebarContent += '  </li>'
+    Write-Host ""
+    Write-Host "Generating sidebar.html for '$topDirName'..." -ForegroundColor Cyan
+
+    $projectStructure = $projectStructures[$topDirName]
+    $topDirPath = Join-Path $scriptPath $topDirName
+
+    $sectionLabel = $topDirName.Substring(0, 1).ToUpper() + $topDirName.Substring(1) + " Content"
+
+    $sidebarContent = @()
+    $sidebarContent += '<ul>'
+    $sidebarContent += '  <li>'
+    $sidebarContent += "    <a class=`"blog-nav-item`" href=`"index.html`">$sectionLabel</a>"
+    $sidebarContent += '  </li>'
 
 # Add project sections from subdirectories
 $projectKeys = $projectStructure.Keys | Sort-Object
@@ -336,24 +391,24 @@ foreach ($projectKey in $projectKeys) {
     $sidebarContent += '  </li>'
 }
 
-# Add top-level blog files (backward compatibility)
-$topLevelMds = Get-ChildItem -Path "blog" -Filter "*.md" -File -ErrorAction SilentlyContinue |
-    Where-Object { $_.Name -ne "README.md" -and $_.Name -ne "index.md" } |
-    Sort-Object -Property Name
+    # Add top-level files (backward compatibility)
+    $topLevelMds = Get-ChildItem -Path $topDirPath -Filter "*.md" -File -ErrorAction SilentlyContinue |
+        Where-Object { $_.Name -ne "README.md" -and $_.Name -ne "index.md" } |
+        Sort-Object -Property Name
 
-foreach ($md in $topLevelMds) {
-    # Skip if this is a project home page (already listed above)
-    $projectName = $md.BaseName
-    $isProjectHomePage = $projectStructure.ContainsKey($projectName)
+    foreach ($md in $topLevelMds) {
+        # Skip if this is a project home page (already listed above)
+        $projectName = $md.BaseName
+        $isProjectHomePage = $projectStructure.ContainsKey($projectName)
 
-    if (!$isProjectHomePage) {
-        $mdHref = $md.Name -replace '\.md$', '.html'
-        $mdDisplayName = $md.BaseName -replace '_', ' '
-        $sidebarContent += '  <li>'
-        $sidebarContent += "    <a class=`"blog-nav-item`" href=`"$mdHref`">$mdDisplayName</a>"
-        $sidebarContent += '  </li>'
+        if (!$isProjectHomePage) {
+            $mdHref = $md.Name -replace '\.md$', '.html'
+            $mdDisplayName = $md.BaseName -replace '_', ' '
+            $sidebarContent += '  <li>'
+            $sidebarContent += "    <a class=`"blog-nav-item`" href=`"$mdHref`">$mdDisplayName</a>"
+            $sidebarContent += '  </li>'
+        }
     }
-}
 
 $sidebarContent += '</ul>'
 $sidebarContent += ''
@@ -398,10 +453,11 @@ $sidebarContent += ''
 # "@
 # $sidebarContent += '</script>'
 
-$sidebarPath = Join-Path $scriptPath "blog\sidebar.html"
-$sidebarContent -join "`n" | Out-File -FilePath $sidebarPath -Encoding UTF8
+    $sidebarPath = Join-Path $scriptPath "$topDirName\sidebar.html"
+    $sidebarContent -join "`n" | Out-File -FilePath $sidebarPath -Encoding UTF8
 
-Write-Host "Sidebar generated: $sidebarPath" -ForegroundColor Green
+    Write-Host "Sidebar generated: $(Get-RelativeToRoot $sidebarPath)" -ForegroundColor Green
+}
 
 # ========================================
 # 6. Report
